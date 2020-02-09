@@ -29,6 +29,12 @@ class AllAnimalTests {
 	}
 
 	@Test
+	void testWhoAreYou() {
+		assertEquals("I am Sneaky !", sneaky.whoAreYou());
+		assertEquals("I am Bolt !", bolt.whoAreYou());
+	}
+
+	@Test
 	public void testSayHi() {
 		String humanName = "Marina";
 		sneaky.sayHiToHuman(humanName);

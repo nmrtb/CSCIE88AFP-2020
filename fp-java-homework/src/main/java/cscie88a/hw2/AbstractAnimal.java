@@ -35,6 +35,8 @@ public abstract class AbstractAnimal {
 		return name;
 	}
 
+	public String whoAreYou() { return "I am " + name + " !"; }
+
 	public void setName(String name) {
 		this.name = name;
 	}
