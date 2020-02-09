@@ -19,7 +19,14 @@ public class Dog extends AbstractAnimal implements ITrainable{
 		// I am happy to play with anyone!
 		System.out.println(name + " says: I'm playing with " + aFriend.getName());
 		return ActionResult.SUCCESS;
-	}	
+	}
+
+	@Override
+	public ActionResult playWithToy(Toy toy) {
+		System.out.println("I love the toy! Yeah!!!");
+		toy.doFunStuff();
+		return ActionResult.SUCCESS;
+	}
 	
 	@Override
 	public ActionResult doTrick(String trickName) {

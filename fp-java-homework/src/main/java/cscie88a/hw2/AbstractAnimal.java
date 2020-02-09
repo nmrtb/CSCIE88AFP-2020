@@ -21,6 +21,8 @@ public abstract class AbstractAnimal {
 
 	public abstract ActionResult playWithMe(AbstractAnimal aFriend);
 
+	public abstract ActionResult playWithToy(Toy toy);
+
 	public ActionResult takeMedicine(boolean withTreat) {
 		if (withTreat) {
 			return ActionResult.SUCCESS;

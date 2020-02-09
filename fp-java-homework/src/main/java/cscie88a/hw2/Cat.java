@@ -45,6 +45,18 @@ public class Cat extends AbstractAnimal implements ITrainable{
 		}
 	}
 
+	@Override
+	public ActionResult playWithToy(Toy toy) {
+		if (toy.isSqueaky()) {
+			System.out.println("Looks like a mouse... I'll play");
+			toy.doFunStuff();
+			return ActionResult.SUCCESS;
+		} else {
+			System.out.println("don't feel like playing");
+			return ActionResult.FAILURE;
+		}
+	}
+
 	// this method is overwritten !
 	public ActionResult takeMedicine(boolean withTreat) {
 		System.out.println(name + " says: you won't trick me - I'm not taking it!");

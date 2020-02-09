@@ -9,11 +9,15 @@ class AllAnimalTests {
 
 	private Cat sneaky;
 	private Dog bolt;
+	private Toy toy_squeaky;
+	private Toy toy_not_squeaky;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		sneaky = new Cat("Sneaky", "blue", "gray");
 		bolt = new Dog("Bolt", "brown", "whity");
+		toy_squeaky = new Toy(true, true, true);
+		toy_not_squeaky = new Toy(false, true, true);
 	}
 
 	@Test
@@ -71,5 +75,15 @@ class AllAnimalTests {
 		// dog will play with anybody, always
 		result = bolt.playWithMe(sneaky);
 		assertEquals(ActionResult.SUCCESS, result);
+	}	@Test
+
+	public void testPlayWithToy() {
+		// squeaky toy
+		assertEquals(ActionResult.SUCCESS, sneaky.playWithToy(toy_squeaky));
+		assertEquals(ActionResult.SUCCESS, bolt.playWithToy(toy_squeaky));
+
+		// non-squeaky toy
+		assertEquals(ActionResult.FAILURE, sneaky.playWithToy(toy_not_squeaky));
+		assertEquals(ActionResult.SUCCESS, bolt.playWithToy(toy_not_squeaky));
 	}
 }
