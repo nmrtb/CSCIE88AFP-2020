@@ -28,6 +28,14 @@ class AnimalManagerTest {
 	}
 
 	@Test
+	public void testTrainForSuperTricks() {
+		String superTrick = "backflip";
+		assertEquals(ActionResult.FAILURE, AnimalManager.trainForSuperTricks(bolt, superTrick));
+		assertEquals(ActionResult.FAILURE, AnimalManager.trainForSuperTricks(bolt, superTrick));
+	}
+
+
+	@Test
 	public void testDoTrick_anonimous_from_interface() {
 		ActionResult result = AnimalManager.trainForTricks(
 				new ITrainable() {
