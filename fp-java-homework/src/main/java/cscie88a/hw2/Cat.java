@@ -46,9 +46,9 @@ public class Cat extends AbstractAnimal implements ITrainable{
 	}
 
 	// this method is overwritten !
-	public boolean takeMedicine(boolean withTreat) {
+	public ActionResult takeMedicine(boolean withTreat) {
 		System.out.println(name + " says: you won't trick me - I'm not taking it!");
-		return false;		
+		return ActionResult.FAILURE;
 	}
 
 	

@@ -17,11 +17,11 @@ class AllAnimalTests {
 	}
 
 	@Test
-	void testTakeMedicine() {		
-		assertTrue(bolt.takeMedicine(true));
-		assertFalse(bolt.takeMedicine(false));
-		assertFalse(sneaky.takeMedicine(true));
-		assertFalse(sneaky.takeMedicine(false));
+	void testTakeMedicine() {
+		assertEquals(ActionResult.SUCCESS, bolt.takeMedicine(true));
+		assertEquals(ActionResult.FAILURE, bolt.takeMedicine(false));
+		assertEquals(ActionResult.FAILURE, sneaky.takeMedicine(true));
+		assertEquals(ActionResult.FAILURE, sneaky.takeMedicine(false));
 	}
 
 	@Test

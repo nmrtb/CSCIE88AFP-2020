@@ -21,11 +21,11 @@ public abstract class AbstractAnimal {
 
 	public abstract ActionResult playWithMe(AbstractAnimal aFriend);
 
-	public boolean takeMedicine(boolean withTreat) {
+	public ActionResult takeMedicine(boolean withTreat) {
 		if (withTreat) {
-			return true;
+			return ActionResult.SUCCESS;
 		} else {
-			return false;
+			return ActionResult.FAILURE;
 		}
 	}
 	
