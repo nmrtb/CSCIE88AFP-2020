@@ -34,6 +34,20 @@ class AnimalManagerTest {
 		assertEquals(ActionResult.FAILURE, AnimalManager.trainForSuperTricks(bolt, superTrick));
 	}
 
+	@Test
+	public void testTrainForSuperTricks_anonymous_class() {
+		// lets create a Special Dog class who can do superTricks
+		String trickName = "backflip";
+		ActionResult result = AnimalManager.trainForSuperTricks(
+				new Dog() {
+					public ActionResult doSuperTrick(String trickName) {
+						System.out.println("I'm a Superhero, check out my " + trickName + " !");
+						return ActionResult.SUCCESS;
+					}
+				},
+				trickName);
+		assertEquals(ActionResult.SUCCESS, result);
+	}
 
 	@Test
 	public void testDoTrick_anonimous_from_interface() {
