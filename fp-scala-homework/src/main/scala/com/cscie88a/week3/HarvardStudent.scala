@@ -1,14 +1,14 @@
 package com.cscie88a.week3
 
-// complete the code for problem 4 and 5 below
-case class HarvardStudent() {
-
-  def fullName: String = ???
-
-  def failedSubject: Boolean = ???
-
+case class HarvardStudent(firstName: String,
+                          lastName: String,
+                          subjectName: String,
+                          percentScore: String) {
 }
 
 object HarvardStudent {
-  def apply(csv: String): HarvardStudent = ???
+  def apply(csv: String): HarvardStudent = {
+    val fields = csv.split(",")
+    HarvardStudent(fields(0), fields(1), fields(2), fields(3))
+  }
 }

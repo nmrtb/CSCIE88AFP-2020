@@ -9,8 +9,13 @@ class HarvardStudentTest
 
 
   "HarvardStudent case class" should {
-    // add unit tests for problem 4 below
-
+    "create a HarvardStudent instance without using the new operator" in {
+      val student = HarvardStudent("Truman", "Biro", "CS", "100")
+      student.firstName should be("Truman")
+      student.lastName should be("Biro")
+      student.subjectName should be("CS")
+      student.percentScore should be("100")
+    }
   }
 
   "HarvardStudent list operations" should {
