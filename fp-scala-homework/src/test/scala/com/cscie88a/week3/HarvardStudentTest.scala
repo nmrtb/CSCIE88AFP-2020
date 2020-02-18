@@ -32,12 +32,15 @@ class HarvardStudentTest
   }
 
   "HarvardStudent list operations" should {
-    // add unit tests for problem 5 below
     "fromCSVStrings should return List[HarvardStudent]" in {
       val csvList = List("James,Dean,Math,75", "Bradd,Pitt,Math,35")
       HarvardStudent.fromCSVStrings(csvList) should be(List(HarvardStudent("James","Dean","Math",75),
                                                             HarvardStudent("Bradd","Pitt","Math",35)))
     }
-  }
 
+    "avgStudentScore returns average scores" in {
+      val list = List(HarvardStudent("James","Dean","Math",75), HarvardStudent("Bradd","Pitt","Math",35))
+      HarvardStudent.avgStudentScore(list) should be(55)
+    }
+  }
 }

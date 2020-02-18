@@ -31,4 +31,13 @@ object HarvardStudent {
     }
     students.toList
   }
+
+  def avgStudentScore(list: List[HarvardStudent]): Double = {
+    var total = 0
+    var count = 0
+    list.foreach { student =>
+                   total += student.percentScore
+                   count += 1}
+    total / count
+  }
 }
