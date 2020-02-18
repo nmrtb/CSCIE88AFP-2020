@@ -13,7 +13,7 @@ case class HarvardStudent(firstName: String,
   }
 
   def failedSubject: Boolean =
-    if (percentScore < 50) false else true
+    if (percentScore < 50) true else false
 
 }
 
@@ -38,6 +38,17 @@ object HarvardStudent {
     list.foreach { student =>
                    total += student.percentScore
                    count += 1}
+    total / count
+  }
+
+  def avgPassingScore(list: List[HarvardStudent]): Double = {
+    var total = 0
+    var count = 0
+    list.foreach { student =>
+                    if (student.failedSubject == false) {
+                      total += student.percentScore
+                      count += 1}
+                    }
     total / count
   }
 }

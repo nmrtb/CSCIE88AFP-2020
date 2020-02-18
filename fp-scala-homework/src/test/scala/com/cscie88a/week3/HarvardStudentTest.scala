@@ -22,12 +22,12 @@ class HarvardStudentTest
       student.fullName should be("TRUMAN BIRO")
     }
 
-    "failedSubject should return true if percentScore > 50" in {
-      student.failedSubject should be(true)
-    }
-    "failedSubject should return false if percentScore < 50" in {
-      student.percentScore = 1
+    "failedSubject should return false if percentScore > 50" in {
       student.failedSubject should be(false)
+    }
+    "failedSubject should return true if percentScore < 50" in {
+      student.percentScore = 1
+      student.failedSubject should be(true)
     }
   }
 
@@ -38,9 +38,16 @@ class HarvardStudentTest
                                                             HarvardStudent("Bradd","Pitt","Math",35)))
     }
 
-    "avgStudentScore returns average scores" in {
+    "avgStudentScore returns average score of all students" in {
       val list = List(HarvardStudent("James","Dean","Math",75), HarvardStudent("Bradd","Pitt","Math",35))
       HarvardStudent.avgStudentScore(list) should be(55)
+    }
+
+    "avgPassingScore returns average score of students passing" in {
+      val studentActors = List(HarvardStudent("James","Dean","Math",75),
+                               HarvardStudent("Bradd","Pitt","Math",35),
+                               HarvardStudent("Will","Smith","Math",95))
+      HarvardStudent.avgPassingScore(studentActors) should be(85)
     }
   }
 }
