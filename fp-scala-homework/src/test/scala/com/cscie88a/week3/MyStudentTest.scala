@@ -7,7 +7,7 @@ final class MyStudentTest
   with Matchers
   with BeforeAndAfterAll {
 
-  "Student case class" should {
+  "Student class" should {
     val student = new Student("Truman","Biro")
 
     "creates a Student instance with correct parameters" in {
