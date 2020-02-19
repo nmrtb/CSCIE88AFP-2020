@@ -25,30 +25,18 @@ object HarvardStudent {
 
   def fromCSVStrings(csvList: List[String]): List[HarvardStudent] = {
     var students = new ListBuffer[HarvardStudent]()
-    csvList.foreach { student =>
-                      val fields = student.split(",")
-                      students += HarvardStudent(fields(0), fields(1), fields(2), fields(3).toInt)
-    }
+    csvList.foreach { student => students += apply(student)}
     students.toList
   }
 
   def avgStudentScore(list: List[HarvardStudent]): Double = {
-    var total = 0
-    var count = 0
-    list.foreach { student =>
-                   total += student.percentScore
-                   count += 1}
-    total / count
+    var scores = new ListBuffer[Int]
+    list.foreach { student => scores += student.percentScore}
+    scores.reduce(_ + _) / scores.length
   }
 
   def avgPassingScore(list: List[HarvardStudent]): Double = {
-    var total = 0
-    var count = 0
-    list.foreach { student =>
-                    if (student.failedSubject == false) {
-                      total += student.percentScore
-                      count += 1}
-                    }
-    total / count
+    val newList = list.filter(_.failedSubject == false)
+    avgStudentScore(newList)
   }
 }
