@@ -11,4 +11,11 @@ public class AdoptionService {
             return ActionResult.FAILURE;
     }
 
+    public ActionResult tryToAdopt2(IAdoptable2 someoneToAdopt, boolean healthCheckDone) {
+        if (someoneToAdopt.readyForAdoption(healthCheckDone)) {
+            return ActionResult.SUCCESS;
+        } else
+            return ActionResult.FAILURE;
+    }
+
 }

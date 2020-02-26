@@ -30,4 +30,53 @@ class AdoptionTests {
 		assertEquals(ActionResult.FAILURE, result);
 	}
 
+	@Test
+	public void testIAdoptable1_lambda1(){
+
+		AdoptionService service = new AdoptionService();
+
+		ActionResult result = service.tryToAdopt( () -> true );
+		assertEquals(ActionResult.SUCCESS, result);
+	}
+
+	@Test
+	public void testIAdoptable2_lambda1(){
+
+		AdoptionService service = new AdoptionService();
+
+		ActionResult result = service.tryToAdopt2( (healthCheckDone) -> true, true );
+		assertEquals(ActionResult.SUCCESS, result);
+
+		result = service.tryToAdopt2( (healthCheckDone) -> false, false );
+		assertEquals(ActionResult.FAILURE, result);
+
+	}
+
+	@Test
+	public void testIAdoptable1_lambda2(){
+
+		AdoptionService service = new AdoptionService();
+		IAdoptable lambdaForI1 = () -> true;
+
+		ActionResult result = service.tryToAdopt( lambdaForI1 );
+		assertEquals(ActionResult.SUCCESS, result);
+	}
+
+	@Test
+	public void testIAdoptable2_lambda2(){
+
+		AdoptionService service = new AdoptionService();
+
+		IAdoptable2 lambdaForI2 = (healthCheckDone) -> true;
+
+		ActionResult result = service.tryToAdopt2( lambdaForI2, true );
+		assertEquals(ActionResult.SUCCESS, result);
+
+		lambdaForI2 = (healthCheckDone) -> false;
+
+		result = service.tryToAdopt2( lambdaForI2, false );
+		assertEquals(ActionResult.FAILURE, result);
+
+	}
+
 }
