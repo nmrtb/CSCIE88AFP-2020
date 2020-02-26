@@ -20,7 +20,7 @@ public class Dog extends AbstractAnimal implements ITrainable{
 		System.out.println(name + " says: I'm playing with " + aFriend.getName());
 		return ActionResult.SUCCESS;
 	}	
-	
+
 	@Override
 	public ActionResult doTrick(String trickName) {
 		System.out.println(name + " says: I LOVE doing tricks! I'm doing " + trickName + " now!");

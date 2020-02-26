@@ -28,7 +28,7 @@ class AnimalManagerTest {
 	}
 
 	@Test
-	public void testDoTrick_anonimous_from_interface() {
+	public void testDoTrick_anonymous_from_interface() {
 		ActionResult result = AnimalManager.trainForTricks(
 				new ITrainable() {
 					public ActionResult doTrick(String trickName) {
@@ -58,7 +58,7 @@ class AnimalManagerTest {
 	}
 
 	@Test 
-	public void testSetupPlaydate_anonimous_class() {
+	public void testSetupPlaymate_anonymous_class() {
 		// lets create a Special cat who will play with the dog 
 		// regardless of being friendly or not
 		ActionResult result = AnimalManager.setupPlaydate(

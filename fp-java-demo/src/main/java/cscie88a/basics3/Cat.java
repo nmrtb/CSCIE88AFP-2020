@@ -21,12 +21,7 @@ public class Cat extends Animal {
 	}
 
 	public static void main(String[] args) throws Exception {
-		Cat demon = new Cat("Demon", "green", "black");
-		Cat sneaky = new Cat("Sneaky", "blue", "gray");
-		String somethingToSay = "Hello!";
-		System.out.println("Demon says: " + demon.saySomething(somethingToSay));
-		System.out.println("Sneaky says: " + sneaky.saySomething(somethingToSay));
-		
+		String somethingToSay = "blah blah";
 		System.out.println("All cats say: " + Cat.saySomething(somethingToSay));
 	}
 
