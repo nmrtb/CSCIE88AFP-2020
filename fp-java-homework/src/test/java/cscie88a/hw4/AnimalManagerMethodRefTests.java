@@ -1,6 +1,8 @@
 package cscie88a.hw4;
 
+import cscie88a.hw2.AbstractAnimal;
 import cscie88a.hw2.ActionResult;
+import cscie88a.hw2.AnimalManager;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +14,9 @@ class AnimalManagerMethodRefTests {
 	 */
 	@Test
 	public void testDoRun_static_method(){
-		// TODO implement this
+		ITrainableFP lambdaMethodRef = AbstractAnimalFP::doTrickStatic;
+		ActionResult result = AnimalManagerFP.trainToRun( lambdaMethodRef );
+		assertEquals(ActionResult.FAILURE, result);
 	}
 
 	/**
@@ -21,7 +25,15 @@ class AnimalManagerMethodRefTests {
 	@Test
 	public void testDoRun_instance_method(){
 		CatFP sneaky = new CatFP("Sneaky");
-		// TODO implement this
+		ITrainableFP lambdaMethodRef = sneaky::doTrick;
+
+		sneaky.setGoodMood(true);
+		ActionResult result = AnimalManagerFP.trainToRun( lambdaMethodRef );
+		assertEquals(ActionResult.SUCCESS, result);
+
+		sneaky.setGoodMood(false);
+		result = AnimalManagerFP.trainToRun( lambdaMethodRef );
+		assertEquals(ActionResult.FAILURE, result);
 	}
 
 }

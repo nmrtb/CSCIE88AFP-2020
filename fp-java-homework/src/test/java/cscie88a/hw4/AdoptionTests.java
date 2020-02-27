@@ -3,6 +3,9 @@ package cscie88a.hw4;
 import cscie88a.hw2.ActionResult;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AdoptionTests {
@@ -49,7 +52,6 @@ class AdoptionTests {
 
 		result = service.tryToAdopt2( (healthCheckDone) -> false, false );
 		assertEquals(ActionResult.FAILURE, result);
-
 	}
 
 	@Test
@@ -76,7 +78,6 @@ class AdoptionTests {
 
 		result = service.tryToAdopt2( lambdaForI2, false );
 		assertEquals(ActionResult.FAILURE, result);
-
 	}
 
 }
