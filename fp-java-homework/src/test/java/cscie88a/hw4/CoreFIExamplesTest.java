@@ -4,6 +4,8 @@ import cscie88a.hw2.ActionResult;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -99,5 +101,40 @@ class CoreFIExamplesTest {
         };
 
         CoreFIExamples.chainSupplierAndConsumer(catSupplier, animalConsumer);
+    }
+
+    @Test
+    public void testSupplierAndConsumerForAdoption(){
+        Random random = new Random();
+        List<String> list = new ArrayList<>();
+        list.add("Dog");
+        list.add("Cat");
+
+        Supplier<AbstractAnimalFP> catAndDogSupplier = () -> {
+            String selected = list.get(random.nextInt(list.size()));
+            if (selected == "Cat") {
+                CatFP newCat = new CatFP("SuppliedCat");
+                boolean isGoodMood = random.nextBoolean();
+                newCat.setGoodMood(isGoodMood);
+                return newCat;
+            } else {
+                DogFP newDog = new DogFP("SuppliedDog");
+                return newDog;
+            }
+        };
+
+        Consumer<AbstractAnimalFP> animalConsumer = animal -> {
+            if (animal instanceof cscie88a.hw4.CatFP) {
+                if (((CatFP) animal).doTrick("any trick") == ActionResult.SUCCESS) {
+                    System.out.println("I will accept this animal for training");
+                } else {
+                    System.out.println("I will NOT accept this animal for training");
+                }
+            } else {
+                System.out.println("I don't train those animals");
+            }
+        };
+
+        CoreFIExamples.chainSupplierAndConsumer(catAndDogSupplier, animalConsumer);
     }
 }
