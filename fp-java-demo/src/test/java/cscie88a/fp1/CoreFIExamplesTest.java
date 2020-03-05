@@ -28,6 +28,7 @@ class CoreFIExamplesTest {
                     return 0;
             }
         };
+        CoreFIExamples.calculateLength(calcFnSafe, "lab4");
 
         Function<String, Integer> calcFn1 = inputString -> inputString.length();
         Function<String, Integer> calcFn_plus10 = inputString -> inputString.length() + 10;
@@ -76,6 +77,7 @@ class CoreFIExamplesTest {
         ActionResult result1 = CoreFIExamples.useFunctionToTrain(myTrainingFunction1, sneaky);
         // Sneaky is in a good mood - training should succeed
         assertEquals(ActionResult.SUCCESS, result1);
+        sneaky.setGoodMood(false);
         ActionResult result2 = CoreFIExamples.useFunctionToTrain(myTrainingFunction2, sneaky);
         assertEquals(ActionResult.SUCCESS, result2);
         ActionResult result3 = CoreFIExamples.useFunctionToTrain(myTrainingFunction3, sneaky);
