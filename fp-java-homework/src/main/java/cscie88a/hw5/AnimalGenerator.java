@@ -13,7 +13,7 @@ public class AnimalGenerator {
     static int numberOfDogs = 0;
     static int numberOfHedgehogs = 0;
 
-
+    // Iterative creation
     public static Stream<StreamAnimal> generateStreamOfAnimalsFromCollection(int numberOfItems) {
         List<StreamAnimal> animalList = new ArrayList<>(numberOfItems);
 
@@ -48,6 +48,7 @@ public class AnimalGenerator {
         return resultStream;
     }
 
+    // Supplier
     public static StreamAnimal getNewAnimal() {
         AnimalType newAnimal = generateAnimalType();
 
@@ -75,6 +76,7 @@ public class AnimalGenerator {
         return animal;
     }
 
+    // Using supplier as lambda
     public static Stream<StreamAnimal> generateStreamOfAnimals_lambda() {
 
         Stream<StreamAnimal> resultStream = Stream.iterate(
@@ -85,6 +87,16 @@ public class AnimalGenerator {
         return resultStream;
     }
 
+    // Using suppler as method ref to generate()
+    public static Stream<StreamAnimal> generateStreamOfAnimals_methodRef() {
+        Stream<StreamAnimal> resultStream = Stream.generate(
+                AnimalGenerator::getNewAnimal
+        );
+
+        return resultStream;
+    }
+
+    // Private helper method
     private static AnimalType generateAnimalType() {
         AnimalType result;
 

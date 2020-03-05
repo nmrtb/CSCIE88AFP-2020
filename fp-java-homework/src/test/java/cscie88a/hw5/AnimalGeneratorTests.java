@@ -104,5 +104,15 @@ class AnimalGeneratorTests {
 
 	// TODO do all same tests for testGenerateStreamOfAnimals_lambda
 
+	@Test
+//	 Prints stream for visual checking
+	public void testGenerateStreamOfAnimals_methodRef(){
+		Stream<StreamAnimal> newStream = AnimalGenerator.generateStreamOfAnimals_methodRef()
+				.limit(10);
+
+		newStream.forEach(animal -> System.out.println(animal));
+	}
+
+	// TODO do all same tests for testGenerateStreamOfAnimals_methodRef
 
 }
