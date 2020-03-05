@@ -13,14 +13,32 @@ public class AnimalGenerator {
 //        (1) creates a List of StreamAnimal objects - with the specified number of object
         List<StreamAnimal> animalList = new ArrayList<>(numberOfItems);
 //        (2) generate approximately equal amount of Cats, Dogs and Hedgehogs
-//          - randomly set their hasCurrentShots attribute to FALSE or TRUE
-//          - assign them names with appended number of the generated item; for example: "GeneratedCat1", "GeneratedDog2", "GeneratedCat3", ... (does not matter, as long as they are unique)
         Random random = new Random();
+
+        int numberOfCats = 0;
+        int numberOfDogs = 0;
+        int numberOfHedgehogs = 0;
+
         for (int i = 0; i<numberOfItems; i++) {
+            AnimalType newAnimal = generateAnimalType();
+
+            String newName;
+
+            if (newAnimal == AnimalType.CAT) {
+                numberOfCats++;
+                newName = "GeneratedCat" + numberOfCats;
+            } else if (newAnimal == AnimalType.DOG){
+                numberOfDogs++;
+                newName = "GeneratedDog" + numberOfDogs;
+            } else {
+                numberOfHedgehogs++;
+                newName = "GeneratedHedgehog" + numberOfHedgehogs;
+            }
+
             StreamAnimal animal =
-                    new StreamAnimal(AnimalType.CAT,            // randomly a hedgehog, cat or dog
-                              "Cat" + i,                      // named as ANIMALTYPE and appending a number
-                                    random.nextBoolean(),                       // randomly set to TRUE or FALSE
+                    new StreamAnimal(newAnimal,                     // randomly a hedgehog, cat or dog
+                                    newName,                        // named as ANIMALTYPE and appending a number
+                                    random.nextBoolean(),           // randomly set to TRUE or FALSE
                                     random.nextInt(20));    // random integer between 0 and 20
             animalList.add(animal);
         }
@@ -28,5 +46,22 @@ public class AnimalGenerator {
         Stream<StreamAnimal> resultStream = animalList.stream();
 
         return resultStream;
+    }
+
+    private static AnimalType generateAnimalType() {
+        AnimalType result;
+
+        Random random = new Random();
+        int number = random.nextInt(3); // generates between 0 and 2
+
+        if (number == 0) {
+            result = AnimalType.CAT;
+        } else if (number == 1){
+            result = AnimalType.DOG;
+        } else {
+            result = AnimalType.HEDGEHOG;
+        }
+
+        return result;
     }
 }
