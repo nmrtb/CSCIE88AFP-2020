@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
+import java.util.function.Supplier;
 
 public class AnimalGenerator {
 
@@ -48,7 +49,7 @@ public class AnimalGenerator {
         return resultStream;
     }
 
-    // Supplier
+    // Supplier abstract method
     public static StreamAnimal getNewAnimal() {
         AnimalType newAnimal = generateAnimalType();
 
@@ -79,9 +80,8 @@ public class AnimalGenerator {
     // Using supplier as lambda
     public static Stream<StreamAnimal> generateStreamOfAnimals_lambda() {
 
-        Stream<StreamAnimal> resultStream = Stream.iterate(
-                getNewAnimal(),
-                previousAnimal -> getNewAnimal()
+        Stream<StreamAnimal> resultStream = Stream.generate(
+                () -> getNewAnimal()
         );
 
         return resultStream;
