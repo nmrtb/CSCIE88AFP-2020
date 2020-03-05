@@ -9,15 +9,15 @@ import java.util.stream.Stream;
 
 public class AnimalGenerator {
 
-    public static Stream<StreamAnimal> generateStreamOfAnimalsFromCollection(int numberOfItems) {
-//        (1) creates a List of StreamAnimal objects - with the specified number of object
-        List<StreamAnimal> animalList = new ArrayList<>(numberOfItems);
-//        (2) generate approximately equal amount of Cats, Dogs and Hedgehogs
-        Random random = new Random();
+    static int numberOfCats = 0;
+    static int numberOfDogs = 0;
+    static int numberOfHedgehogs = 0;
 
-        int numberOfCats = 0;
-        int numberOfDogs = 0;
-        int numberOfHedgehogs = 0;
+
+    public static Stream<StreamAnimal> generateStreamOfAnimalsFromCollection(int numberOfItems) {
+        List<StreamAnimal> animalList = new ArrayList<>(numberOfItems);
+
+        Random random = new Random();
 
         for (int i = 0; i<numberOfItems; i++) {
             AnimalType newAnimal = generateAnimalType();
@@ -42,8 +42,45 @@ public class AnimalGenerator {
                                     random.nextInt(20));    // random integer between 0 and 20
             animalList.add(animal);
         }
-//        (3) Generates a stream from this collection
+
         Stream<StreamAnimal> resultStream = animalList.stream();
+
+        return resultStream;
+    }
+
+    public static StreamAnimal getNewAnimal() {
+        AnimalType newAnimal = generateAnimalType();
+
+        Random random = new Random();
+
+        String newName;
+
+        if (newAnimal == AnimalType.CAT) {
+            numberOfCats++;
+            newName = "GeneratedCat" + numberOfCats;
+        } else if (newAnimal == AnimalType.DOG){
+            numberOfDogs++;
+            newName = "GeneratedDog" + numberOfDogs;
+        } else {
+            numberOfHedgehogs++;
+            newName = "GeneratedHedgehogs" + numberOfHedgehogs;
+        }
+
+        StreamAnimal animal =
+                new StreamAnimal(newAnimal,             // randomly a hedgehog, cat or dog
+                        newName,                        // named as ANIMALTYPE and appending a number
+                        random.nextBoolean(),           // randomly set to TRUE or FALSE
+                        random.nextInt(20));    // random integer between 0 and 20
+
+        return animal;
+    }
+
+    public static Stream<StreamAnimal> generateStreamOfAnimals_lambda() {
+
+        Stream<StreamAnimal> resultStream = Stream.iterate(
+                getNewAnimal(),
+                previousAnimal -> getNewAnimal()
+        );
 
         return resultStream;
     }
