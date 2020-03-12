@@ -1,5 +1,7 @@
 package com.cscie88a.week6
 
 object FunctionUtils2 {
-  // add you code here
+  def prefixLogger(prefix: String): String => String = (str: String) => {
+    prefix + " " + str
+  }
 }

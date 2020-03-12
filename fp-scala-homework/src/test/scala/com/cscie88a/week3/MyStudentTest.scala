@@ -11,7 +11,7 @@ final class MyStudentTest
     val student = new Student("Truman","Biro")
 
     "creates a Student instance with correct parameters" in {
-          student.firstName should be("Truman")
+        student.firstName should be("Truman")
         student.lastName should be("Biro")
     }
     "has a greet method with firstName and lastName uppercased" in {
