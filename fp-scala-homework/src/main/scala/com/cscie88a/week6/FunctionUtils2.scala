@@ -43,20 +43,17 @@ object FunctionUtils2 {
     // Below doesn't "increment" if word appears twice
     val a = for {
       token <- tokenize(text) // creates list of words for iterating
-      (k, v) <- updateCounts(token, Map()) // creates tuples (word, 1)
-    } yield (k, v)
+      (k, v) <- updateCounts(token, Map()) // creates tuples (word, 1))
+    } yield (k, v) // Maps to List of all tuples
 
-//    val b = a.foldLeft(Map.empty[String, Int]) { (a, b) => case (acc, (k, v)) =>
-//      acc.updated(k, acc.getOrElse(k, Seq.empty[String]) ++ Seq(v)) }
-
-    val b = a.map( t => t._1 -> t._2)
-    println(a)
-    println(b)
+    // NOTE:  My problem is toMap (called below for return) overwrites duplicates
+    //        The problem comes from passing in the empty Map() to updateCounts()
+    //        Ideally I'd add another line and pass in (k, v) in the form of a Map
+    //        But, no matter what I do, (k, v) remains a tuple - I can't map it to a Map
 
     // Below works, doesn't use updateCounts
     // https://janzhou.org/2015/scala-functional-programming-for-word-count.html
-//    tokenize(text).groupBy((word:String) => word).mapValues(_.length)
-//    Map("this" -> 1)
+    //    tokenize(text).groupBy((word:String) => word).mapValues(_.length)
     a.toMap
   }
 }
@@ -153,7 +150,9 @@ object Scores {
 
     scores
       .filter( score => score.subjectId == subjectId)
-      .map( score => ( studentMap(score.studentId.toString).firstName + " " + studentMap(score.studentId.toString).lastName, score.numericScore) )
+      .map( score =>
+            ( studentMap(score.studentId.toString).firstName + " " + studentMap(score.studentId.toString).lastName,
+              score.numericScore) )
       .toMap
   }
 }

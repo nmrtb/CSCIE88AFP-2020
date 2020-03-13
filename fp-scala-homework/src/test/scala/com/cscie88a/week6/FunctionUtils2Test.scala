@@ -45,15 +45,24 @@ final class FunctionUtils2Test
     }
 
   "tokenize" should {
-    val sentence1 = List("I am a list")
-    val sentence2 = List("I am", "a list to tokenize")
-    val sentence3 = List("I", "am", "a", "list")
-    val sentence4 = List("I", "am", " ", "list")
-    "return a list of strings" in {
+    "return a list of strings when one full sentence" in {
+      val sentence1 = List("I am a list")
       FunctionUtils2.tokenize(sentence1) should be(List("I", "am", "a", "list"))
+    }
+
+    "return a list of strings when separate strings" in {
+      val sentence2 = List("I am", "a list to tokenize")
       FunctionUtils2.tokenize(sentence2) should be(List("I", "am", "a", "list", "to", "tokenize"))
-      FunctionUtils2.tokenize(sentence3) should be(List("I", "am", "a", "list"))
+    }
+
+    "not include empty strings" in {
+      val sentence4 = List("I", "am", " ", "list")
       FunctionUtils2.tokenize(sentence4) should be(List("I", "am", "list"))
+    }
+
+    "return a list of strings when already tokenized" in {
+      val sentence3 = List("I", "am", "a", "list")
+      FunctionUtils2.tokenize(sentence3) should be(List("I", "am", "a", "list"))
     }
   }
 
