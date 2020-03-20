@@ -58,10 +58,27 @@ class MySimpleStreamTest
     "contain val mult12 which contains an infinite stream of multiples of 12" in {
       val sample = MySimpleStreams.mult12.take(5).toList
 
-      val result = sample.filterNot( (i) => i % 12 == 0)
+      val result = sample.filterNot((i) => i % 12 == 0)
 
       result.length should be(0)
+    }
 
+    "pythTest returns true when a^2 + b^2 = c^2 and false otherwise" in {
+      val pythTrue = Tuple3(3, 4, 5)
+      val pythFalse = Tuple3(3, 4, 6)
+
+      MySimpleStreams.pythTest(pythTrue) should be(true)
+      MySimpleStreams.pythTest(pythFalse) should be(false)
+    }
+
+    "contain val upto100 which contains a stream of range 1 to 100" in {
+      val result = 1 to 100
+      MySimpleStreams.upto100.toList should be(result.toList)
+    }
+
+    "pythTriples returns only pythagorean triples" in {
+        MySimpleStreams.pythTriples.toList.
+          forall( i => MySimpleStreams.pythTest(i)) should be(true)
     }
   }
 }

@@ -37,11 +37,19 @@ object MySimpleStreams {
   ) yield i * j
 
   // Problem 4
-//  def pythTest(t: Tuple3[Int, Int, Int]): Boolean = ???
-//
-//  val upto100: Stream[Pure, Int] = ???
-//
-//  val pythTriples: Stream[Pure, (Int, Int, Int)] = ???
-//
-//  def hello: String = "hello"
+  def pythTest(t: Tuple3[Int, Int, Int]): Boolean =
+    scala.math.pow(t._1,2) + scala.math.pow(t._2,2) == scala.math.pow(t._3,2)
+
+  val upto100: Stream[Pure, Int] =
+    Stream.emits(1 to 100)
+
+  val pythTriples: Stream[Pure, (Int, Int, Int)] = {
+    val triplets = for {
+      a <- upto100
+      b <- upto100
+      c <- upto100
+    } yield (a, b, c)
+
+    triplets.filter(i => pythTest(i))
+  }
 }
