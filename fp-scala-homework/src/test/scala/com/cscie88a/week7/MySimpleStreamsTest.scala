@@ -8,7 +8,7 @@ class MySimpleStreamTest
   extends WordSpec
   with Matchers
   with BeforeAndAfterAll {
-  "MySimpleStreams" should {
+  "Problem 1" should {
 
     "contain val numTo10 which contains a stream of range 1 to 10" in {
       val result = 1 to 10
@@ -24,7 +24,9 @@ class MySimpleStreamTest
       val result = 1 to 20
       MySimpleStreams.numTo20.toList should be(result.toList)
     }
+  }
 
+  "Problem 2" should {
     "contain val evens which contains an infinite stream of all even numbers" in {
       val result = List(2, 4, 6, 8, 10)
       MySimpleStreams.evens.take(5).toList should be(result)
@@ -39,7 +41,9 @@ class MySimpleStreamTest
       val result = 1 to 5
       MySimpleStreams.naturalNumbers.take(5).toList should be(result.toList)
     }
+  }
 
+  "Problem 3" should {
     "contain val mult3 which contains an infinite stream of all multiples of 3" in {
       val result = List(3, 6, 9, 12, 15)
       MySimpleStreams.mult3.take(5).toList should be(result)
@@ -62,7 +66,9 @@ class MySimpleStreamTest
 
       result.length should be(0)
     }
+  }
 
+  "Problem 4" should {
     "pythTest returns true when a^2 + b^2 = c^2 and false otherwise" in {
       val pythTrue = Tuple3(3, 4, 5)
       val pythFalse = Tuple3(3, 4, 6)
