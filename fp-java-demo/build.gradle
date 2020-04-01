@@ -22,9 +22,12 @@ repositories {
 ext {
     slf4j_version = '1.7.25'
     logback_version = '1.2.3'
+    kafka_version = '2.4.0'
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     compile group: 'org.slf4j', name: 'slf4j-api', version: slf4j_version
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-to-slf4j
@@ -35,6 +38,15 @@ dependencies {
     compile group: 'ch.qos.logback', name: 'logback-classic', version: logback_version
     implementation 'com.fasterxml.jackson.core:jackson-core:2.10.1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.1'
+
+    // dependencies for Kafka Streams
+    compile group: 'org.apache.kafka', name: 'kafka_2.12', version: kafka_version
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: kafka_version
+    compile group: 'org.apache.kafka', name: 'kafka-streams', version: kafka_version
+    compile group: 'org.apache.kafka', name: 'kafka-streams-scala_2.12', version: kafka_version
+
+    testCompile("org.apache.kafka:kafka-clients:${kafka_version}:test")
+    testCompile("org.apache.kafka:kafka-streams-test-utils:${kafka_version}")
 
     // Use JUnit test framework
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.1'

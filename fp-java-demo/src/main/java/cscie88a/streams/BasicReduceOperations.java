@@ -96,8 +96,9 @@ public class BasicReduceOperations {
 		List<String> strings = testList.stream()
 				.collect(
 						() -> new ArrayList<>(),
-						(c, e) -> c.add(e.toString()),
-						(c1, c2) -> c1.addAll(c2));
+						(c, e) -> c.add(e),
+						(c1, c2) -> c1.addAll(c2)
+				);
 		strings.forEach(logger::info);
 	}
 
@@ -110,7 +111,10 @@ public class BasicReduceOperations {
 	public static void reduceIntoArrayViaCollectors(int listSize){
 		logger.info("reduceIntoArrayViaCollectors():");
 		List<String> testList = StreamGeneration.getTestList(listSize);
-		List<String> strings = testList.stream().collect(Collectors.toList());
+		List<String> strings = testList.stream()
+				.collect(
+						Collectors.toList()
+				);
 		strings.forEach(logger::info);
 	}
 
