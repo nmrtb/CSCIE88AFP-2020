@@ -82,12 +82,7 @@ public class StateOperations {
 
 
 	public static Map<String, List<String>> groupByFirstCharRegular(){
-		//	that creates a list of test strings using the StateOperations.getListOfTestStrings() method
 		List<String> testList = getListOfTestStrings();
-		//	groups them into a Map of <String, List<String>>
-		//	where the keys in the map are first characters of the words (case insensitive)
-		//	and the value is a list of all words that start with this character
-		//	you have to use a generic (three argument) form of the Collectors.groupBy() method
 		Map<String, List<String>> stringsByFirstChar = testList.stream()
 				.parallel()
 				.collect(
@@ -97,11 +92,22 @@ public class StateOperations {
 								Collectors.toList()
 						)
 				);
-		//	returns the created map as the result from the method
 		return stringsByFirstChar;
 	}
-//	groupByFirstCharConcurrent():
-//	does the same thing as the Regular method, but is using a concurrent version of the map/Collector
+
+	public static Map<String, List<String>> groupByFirstCharConcurrent(){
+		List<String> testList = getListOfTestStrings();
+		Map<String, List<String>> stringsByFirstChar = testList.stream()
+				.parallel()
+				.collect(
+						Collectors.groupingByConcurrent(
+								i -> i.substring(0,1).toLowerCase(),
+								ConcurrentHashMap::new,
+								Collectors.toList()
+						)
+				);
+		return stringsByFirstChar;
+	}
 
 
 	private static void printMapEntry(Integer key, List<String> values) {

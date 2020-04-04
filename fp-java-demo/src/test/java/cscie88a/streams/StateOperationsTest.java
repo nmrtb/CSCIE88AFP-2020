@@ -42,6 +42,26 @@ class StateOperationsTest {
 
         assertTrue(output.get("c").containsAll(expectedC));
         assertTrue(output.get("t").containsAll(expectedT));
+
+        System.out.println(output.get("c"));
+        System.out.println(output.get("t"));
+    }
+
+    @Test
+    public void testgroupByFirstCharConcurrent(){
+        Map<String, List<String>> output = StateOperations.groupByFirstCharConcurrent();
+
+        List<String> expectedC = List.of("Cat", "cat", "cot");
+        List<String> expectedT = List.of("The", "trice", "two", "thereabouts");
+
+        assertTrue(output.get("c").size() == 3);
+        assertTrue(output.get("t").size() == 4);
+
+        assertTrue(output.get("c").containsAll(expectedC));
+        assertTrue(output.get("t").containsAll(expectedT));
+
+        System.out.println(output.get("c"));
+        System.out.println(output.get("t"));
     }
 
 }
