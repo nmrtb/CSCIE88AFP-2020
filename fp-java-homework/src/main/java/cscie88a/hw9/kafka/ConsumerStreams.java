@@ -7,16 +7,12 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
-import org.apache.kafka.streams.kstream.Consumed;
-import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.KTable;
-import org.apache.kafka.streams.kstream.Produced;
+import org.apache.kafka.streams.kstream.*;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
+import java.time.Duration;
 import java.util.Properties;
 
 public class ConsumerStreams {
@@ -49,10 +45,12 @@ public class ConsumerStreams {
         StreamsBuilder builder = new StreamsBuilder();
         KStream<String, SensorEvent> stream = builder.stream(kafkaTopic, Consumed.with(Serdes.String(), SENSOR_EVENT_SERDE));
 
-        KTable<String, Long> countBySensorType = stream.groupBy((key, value) -> value.getSensorType())
+        KTable<Windowed<String>, Long> countBySensorType = stream.groupBy((key, value) -> String.format("%s/%s", value.getZipCode(), value.getSensorType()))
+                .windowedBy(TimeWindows.of(Duration.ofMinutes(1)))
                 .count();
 
         countBySensorType.toStream()
+                .map((key, value) -> KeyValue.pair(key.key(), value))
                 .mapValues((key,values) -> key +" : "+  values.toString())
                 .to(sensor_type_count_topic, Produced.with(Serdes.String(), Serdes.String()));
 
