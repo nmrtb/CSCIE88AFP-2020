@@ -62,7 +62,7 @@ class MySimpleAkkaStreamTest
     "contain the input string" in {
 
       val input: String = "testInput"
-      val source: Source[String, NotUsed] = Source(List(input))
+      val source: Source[String, NotUsed] = Source.single(input)
 
       val result: Source[String, NotUsed] = source.via(MySimpleAkkaStream.logFlow)
 
@@ -72,12 +72,41 @@ class MySimpleAkkaStreamTest
     }
   }
 
-  "SimplePipeline" should {
 
+  "byteStringFlow" should {
+
+    "contain the input string as ByteString" in {
+
+      val input: String = "testInput"
+      val source: Source[String, NotUsed] = Source.single(input)
+
+      val result: Source[ByteString, NotUsed] = source.via(MySimpleAkkaStream.byteStringFlow)
+
+      assertSourceContent(result) {
+        s => s(0).shouldBe(ByteString(input))
+      }
+    }
+  }
+
+  "evensPipeline" should {
     "run with correct results" in {
-//        val p = SimplePipeline.csvSumPipeline("input.txt", "result.txt")
-//        val rF = p.run()
+        MySimpleAkkaStream.evensPipeline.run()
         succeed
       }
     }
+
+  "csvSumPipeline" should {
+    "run with correct results" in {
+        MySimpleAkkaStream.evensPipeline
+          .run()
+        succeed
+      }
+    }
+//  "csvSumPipeline" should {
+//    "run with correct results" in {
+//        MySimpleAkkaStream.csvSumPipeline("input.csv", "output.csv")
+//          .run()
+//        succeed
+//      }
+//    }
   }
