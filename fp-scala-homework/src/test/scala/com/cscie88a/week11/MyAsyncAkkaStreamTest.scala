@@ -2,15 +2,11 @@ package com.cscie88a.week11
 
 import akka.NotUsed
 import akka.stream.scaladsl._
-import akka.util.ByteString
 import com.cscie88a.util.StreamUtil
 import org.scalatest.compatible.Assertion
 import org.scalatest.{AsyncWordSpec, BeforeAndAfterAll, Matchers}
-import akka.util.Timeout
 
-import scala.concurrent.duration._
 import scala.concurrent._
-import scala.util.{Failure, Success}
 
 class MyAsyncAkkaStreamTest
   extends AsyncWordSpec

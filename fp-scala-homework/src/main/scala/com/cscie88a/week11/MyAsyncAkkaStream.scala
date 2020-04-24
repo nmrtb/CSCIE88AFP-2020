@@ -12,16 +12,6 @@ object MyAsyncAkkaStream {
 
   import StreamUtil.defaultActorSystem._
 
-  // helper flow
-  def elementLogFlow[I](name: String): Flow[I, I, NotUsed] =
-    Flow[I]
-      .log(name)
-      .addAttributes(Attributes.logLevels(onElement = Attributes.LogLevels.Info))
-
-  // helper logging pipeline
-  def sampleStream[I, M](source: Source[I, M]) =
-    source.take(5).via(elementLogFlow("logger")).runWith(Sink.ignore)
-
   val numTo20Source = Source(1 to 20)
 
   val add2Flow: Flow[Int, Int, NotUsed] =
