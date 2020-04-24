@@ -10,8 +10,6 @@ import scala.concurrent.duration._
 
 object MyAsyncAkkaStream {
 
-  import StreamUtil.defaultActorSystem._
-
   val numTo20Source = Source(1 to 20)
 
   val add2Flow: Flow[Int, Int, NotUsed] =
