@@ -21,7 +21,7 @@ class MyKafkaProducerTest
   }
 
   "KafkaProducer" should {
-    "produce int values" in {
+    "produce values" in {
       val result: Future[Done] = MyKafkaProducer.kafkaProducerPipeline.run()
       result.map(_ => succeed)
     }

@@ -9,6 +9,7 @@ import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.StringSerializer
 
 import scala.concurrent._
+import scala.concurrent.duration._
 
 object MyKafkaProducer {
   import StreamUtil.defaultActorSystem._
@@ -19,7 +20,7 @@ object MyKafkaProducer {
 
   // Source
   val intSource: Source[Int, NotUsed] =
-    Source(for (i <- 1 to 100) yield r.nextInt(100))
+    Source(for (i <- 1 to 100) yield r.nextInt(100) + 1) // +1 makes it 1:100 as 0-indexed
 
   // Flow
   def producerRecordFlow(topic: String): Flow[String, ProducerRecord[String, String], NotUsed] =
