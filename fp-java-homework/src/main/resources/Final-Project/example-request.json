@@ -1,0 +1,20 @@
+{
+  "listingType":"Sale",
+  "propertyTypes":[
+    "NewApartments"
+  ],
+  "minBedrooms":2,
+  "maxBedrooms":2,
+  "minBathrooms":1,
+  "minCarspaces":0,
+  "locations":[
+    {
+      "state":"NSW",
+      "region":"",
+      "area":"",
+      "suburb":"Sydney",
+      "postCode":"2000",
+      "includeSurroundingSuburbs":false
+    }
+  ]
+}
