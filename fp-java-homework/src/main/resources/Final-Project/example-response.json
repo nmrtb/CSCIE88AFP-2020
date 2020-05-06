@@ -1,0 +1,444 @@
+[
+  {
+    "type": "Project",
+    "listings": [
+      {
+        "listingType": "NewHomes",
+        "id": 2013785143,
+        "projectId": 2421,
+        "advertiser": {
+          "type": "Agency",
+          "id": 14927,
+          "name": "CBRE Residential Projects",
+          "logoUrl": "https://images.domain.com.au/img/Agencys/14927/logo_14927.GIF",
+          "preferredColourHex": "#00674a",
+          "bannerUrl": "https://images.domain.com.au/img/Agencys/14927/banner_14927.GIF",
+          "contacts": [
+            {
+              "name": "CBRE  Sales",
+              "photoUrl": "https://images.domain.com.au/img/14927/contact_1249506.jpeg?mod=200505-074309"
+            }
+          ]
+        },
+        "priceDetails": {
+          "displayPrice": "CONTACT AGENT"
+        },
+        "media": [
+          {
+            "category": "Image",
+            "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013785143_6_pi_170814_052158-w1600-h1200"
+          },
+          {
+            "category": "Image",
+            "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013785143_10_pi_170814_052215-w1600-h1200"
+          },
+          {
+            "category": "Image",
+            "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013785143_11_pi_170814_052217-w1600-h1200"
+          },
+          {
+            "category": "Image",
+            "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013785143_13_pi_170814_052222-w1600-h1200"
+          },
+          {
+            "category": "Image",
+            "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013785143_5_pi_170814_052153-w1600-h1200"
+          }
+        ],
+        "propertyDetails": {
+          "state": "NSW",
+          "features": [
+            "AirConditioning",
+            "BuiltInWardrobes",
+            "SecureParking",
+            "CityViews",
+            "Intercom"
+          ],
+          "propertyType": "NewApartments",
+          "allPropertyTypes": [
+            "NewApartments"
+          ],
+          "bathrooms": 2,
+          "bedrooms": 2,
+          "carspaces": 1,
+          "unitNumber": "",
+          "streetNumber": "148-160",
+          "street": "King Street",
+          "area": "Sydney City",
+          "region": "Sydney Region",
+          "suburb": "SYDNEY",
+          "postcode": "2000",
+          "displayableAddress": "King Street, Sydney",
+          "latitude": -33.8686829,
+          "longitude": 151.206787
+        },
+        "headline": "SPECTACULAR 2 BEDROOM APARTMENTS LIKE NO OTHER PLACE IN THE WORLD",
+        "summaryDescription": "<b></b><br />Once in a lifetime does a residential offering of this distinction, built on a site of such prestige, present itself as your ideal home. Idyllically positioned on Hyde Park and amongst Sydneys most important historical buildings, King & Ph...",
+        "hasFloorplan": false,
+        "hasVideo": true,
+        "labels": [
+          "New homes"
+        ],
+        "inspectionSchedule": {
+          "byAppointment": true,
+          "recurring": false,
+          "times": []
+        },
+        "listingSlug": "king-street-sydney-nsw-2000-2013785143"
+      }
+    ],
+    "project": {
+      "state": "NSW",
+      "id": 2421,
+      "name": "King & Phillip",
+      "bannerUrl": "https://images.domain.com.au/img/Agencys/devproject/banner_2421_200415_045307",
+      "preferredColorHex": "#fdedd2",
+      "logoUrl": "https://images.domain.com.au/img/Agencys/devproject/logo_2421_200415_045309",
+      "labels": [
+        "New"
+      ],
+      "displayableAddress": "148-160 KING STREET, SYDNEY, NSW 2000",
+      "suburb": "SYDNEY",
+      "features": [
+        "LUXURY LIVING",
+        "PARKSIDE",
+        "IDEAL HOME",
+        "HYDE PARK",
+        "IDYLLIC & ICONIC"
+      ],
+      "media": [
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2421_1_13_191003_120648-w1920-h1080"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2421_2_13_191003_120648-w1920-h1080"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2421_3_13_191003_120648-w1920-h1080"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2421_4_13_191003_120648-w1920-h1080"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2421_5_13_191003_120648-w1920-h1080"
+        }
+      ],
+      "projectSlug": "project/2421/king---phillip-sydney-nsw"
+    }
+  },
+  {
+    "type": "Project",
+    "listings": [
+      {
+        "listingType": "NewHomes",
+        "id": 2013712288,
+        "projectId": 2346,
+        "advertiser": {
+          "type": "Agency",
+          "id": 33452,
+          "name": "United Development Sydney",
+          "preferredColourHex": "#DDDDDD",
+          "contacts": [
+            {
+              "name": "Anson Yang"
+            }
+          ]
+        },
+        "priceDetails": {
+          "displayPrice": "Contact Agent"
+        },
+        "media": [
+          {
+            "category": "Image",
+            "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013712288_16_pi_180515_010207-w1600-h1200"
+          },
+          {
+            "category": "Image",
+            "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013712288_5_pi_170710_043122-w1600-h1200"
+          },
+          {
+            "category": "Image",
+            "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013712288_18_pi_180515_010211-w1600-h1200"
+          },
+          {
+            "category": "Image",
+            "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013712288_1_pi_170710_043101-w1600-h1200"
+          },
+          {
+            "category": "Image",
+            "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013712288_17_pi_180515_010208-w1600-h1200"
+          }
+        ],
+        "propertyDetails": {
+          "state": "NSW",
+          "features": [
+            "AirConditioning",
+            "BuiltInWardrobes",
+            "InternalLaundry",
+            "SwimmingPool",
+            "CityViews",
+            "Gym",
+            "Intercom",
+            "Dishwasher",
+            "BalconyDeck"
+          ],
+          "propertyType": "NewApartments",
+          "allPropertyTypes": [
+            "NewApartments"
+          ],
+          "bathrooms": 2,
+          "bedrooms": 2,
+          "carspaces": 1,
+          "unitNumber": "",
+          "streetNumber": "203",
+          "street": "Castlereagh St",
+          "area": "Sydney City",
+          "region": "Sydney Region",
+          "suburb": "SYDNEY",
+          "postcode": "2000",
+          "displayableAddress": "203 Castlereagh St, Sydney",
+          "latitude": -33.8743858,
+          "longitude": 151.208832
+        },
+        "headline": "Executive 2 bedroom apartments",
+        "summaryDescription": "<b></b><br />Castle Residences is an exclusive address on the doorstep to Sydneys Hyde Park. \r\n\r\nIt will soon become the citys ultimate CBD address, fusing luxurious tower living with exceptional boutique hotel services. Like celebrated apartment house...",
+        "hasFloorplan": false,
+        "hasVideo": false,
+        "labels": [
+          "New homes"
+        ],
+        "inspectionSchedule": {
+          "byAppointment": true,
+          "recurring": false,
+          "times": []
+        },
+        "listingSlug": "203-castlereagh-st-sydney-nsw-2000-2013712288"
+      }
+    ],
+    "project": {
+      "state": "NSW",
+      "id": 2346,
+      "name": "Castle",
+      "bannerUrl": "https://images.domain.com.au/img/Agencys/devproject/banner_2346_200428_125620",
+      "preferredColorHex": "#222222",
+      "logoUrl": "https://images.domain.com.au/img/Agencys/devproject/logo_2346_200428_125621",
+      "labels": [
+        "Updated"
+      ],
+      "displayableAddress": "203 CASTLEREAGH STREET, SYDNEY, NSW 2000",
+      "suburb": "SYDNEY",
+      "features": [
+        "Hotel Services",
+        "Exceptional Finishes",
+        "Hyde Park Location",
+        "Luxurious Living"
+      ],
+      "media": [
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2346_1_13_190527_110513-w1080-h606"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2346_2_13_190527_110513-w1080-h606"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2346_3_13_190527_110513-w1080-h606"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2346_4_13_190527_110513-w1080-h606"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2346_5_13_190527_110513-w1080-h606"
+        }
+      ],
+      "projectSlug": "project/2346/castle-sydney-nsw"
+    }
+  },
+  {
+    "type": "PropertyListing",
+    "listing": {
+      "listingType": "NewHomes",
+      "id": 2013554411,
+      "advertiser": {
+        "type": "Agency",
+        "id": 17795,
+        "name": "Property Square Realty",
+        "logoUrl": "https://images.domain.com.au/img/Agencys/17795/logo_17795.GIF",
+        "preferredColourHex": "#242E85",
+        "bannerUrl": "https://images.domain.com.au/img/Agencys/17795/banner_17795.GIF",
+        "contacts": [
+          {
+            "name": "Susan Chiu",
+            "photoUrl": "https://images.domain.com.au/img/17795/contact_933109.JPG?mod=200326-104115"
+          }
+        ]
+      },
+      "priceDetails": {
+        "displayPrice": "$1,580,000"
+      },
+      "media": [
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/12896729_1_1_190201_022653-w1440-h940"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013554411_3_1_190321_061205-w480-h600"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2013554411_3_1_191017_012252-w672-h600"
+        }
+      ],
+      "propertyDetails": {
+        "state": "NSW",
+        "features": [
+          "AirConditioning",
+          "BuiltInWardrobes",
+          "Ensuite",
+          "Floorboards",
+          "Gas",
+          "InternalLaundry",
+          "SwimmingPool",
+          "Gym",
+          "AlarmSystem",
+          "Intercom",
+          "Heating",
+          "Study"
+        ],
+        "propertyType": "NewApartments",
+        "allPropertyTypes": [
+          "NewApartments"
+        ],
+        "bathrooms": 1,
+        "bedrooms": 2,
+        "carspaces": 1,
+        "unitNumber": "",
+        "streetNumber": "88",
+        "street": "Hay",
+        "area": "Sydney City",
+        "region": "Sydney Region",
+        "suburb": "SYDNEY",
+        "postcode": "2000",
+        "displayableAddress": "88 Hay, Sydney",
+        "latitude": -33.8783875,
+        "longitude": 151.202469
+      },
+      "headline": "A architect masterpiece - Darling Square apartment for sale",
+      "summaryDescription": "<b></b><br />The epitome of ultra-contemporary vertical living, this designer apartment defines luxury by every measure. Unquestionably stylish with an emphasis on quality and flooded with the natural light of a due northern perspective, the building i...",
+      "hasFloorplan": false,
+      "hasVideo": false,
+      "labels": [
+        "New homes"
+      ],
+      "inspectionSchedule": {
+        "byAppointment": true,
+        "recurring": false,
+        "times": []
+      },
+      "listingSlug": "88-hay-sydney-nsw-2000-2013554411"
+    }
+  },
+  {
+    "type": "PropertyListing",
+    "listing": {
+      "listingType": "NewHomes",
+      "id": 2014267362,
+      "advertiser": {
+        "type": "Agency",
+        "id": 32077,
+        "name": "Colliers Residential",
+        "logoUrl": "https://images.domain.com.au/img/Agencys/32077/logo_32077.png",
+        "preferredColourHex": "#004382",
+        "bannerUrl": "https://images.domain.com.au/img/Agencys/32077/banner_32077.png",
+        "contacts": [
+          {
+            "name": "Nelson Dueza",
+            "photoUrl": "https://images.domain.com.au/img/32077/contact_1599300.jpeg?mod=200326-184313"
+          },
+          {
+            "name": "Simon  Perry",
+            "photoUrl": "https://images.domain.com.au/img/32077/contact_1599303.jpeg?mod=200326-184313"
+          }
+        ]
+      },
+      "priceDetails": {
+        "displayPrice": "Contact Agent"
+      },
+      "media": [
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2014267362_1_1_190913_014058-w800-h600"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2014267362_2_1_190913_014058-w800-h600"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2014267362_3_1_190913_014058-w800-h600"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2014267362_4_1_190913_014058-w800-h600"
+        },
+        {
+          "category": "Image",
+          "url": "https://bucket-api.domain.com.au/v1/bucket/image/2014267362_5_1_190913_014058-w800-h600"
+        }
+      ],
+      "propertyDetails": {
+        "state": "NSW",
+        "features": [
+          "AirConditioning",
+          "BuiltInWardrobes",
+          "Floorboards",
+          "Gas",
+          "InternalLaundry",
+          "SwimmingPool",
+          "Gym",
+          "Intercom",
+          "Dishwasher"
+        ],
+        "propertyType": "NewApartments",
+        "allPropertyTypes": [
+          "NewApartments"
+        ],
+        "bathrooms": 2,
+        "bedrooms": 2,
+        "unitNumber": "",
+        "streetNumber": "2202/38",
+        "street": "York Street",
+        "area": "Sydney City",
+        "region": "Sydney Region",
+        "suburb": "SYDNEY",
+        "postcode": "2000",
+        "displayableAddress": "2202/38 York Street, Sydney",
+        "latitude": -33.86923,
+        "longitude": 151.20639
+      },
+      "headline": "Luxury City Living with views to York Street",
+      "summaryDescription": "<b></b><br />A rare opportunity to secure a stunning 84 sqm two bedroom apartment in the York & George building. Designed by award-winning JWA architects and perfectly positioned in the heart of the Sydney CBD offering unparalleled convenience for dini...",
+      "hasFloorplan": true,
+      "hasVideo": false,
+      "labels": [
+        "New homes"
+      ],
+      "inspectionSchedule": {
+        "byAppointment": true,
+        "recurring": false,
+        "times": []
+      },
+      "listingSlug": "2202-38-york-street-sydney-nsw-2000-2014267362"
+    }
+  }
+]
