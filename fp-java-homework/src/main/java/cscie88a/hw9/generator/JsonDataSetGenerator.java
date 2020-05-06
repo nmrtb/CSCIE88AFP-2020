@@ -1,7 +1,7 @@
 package cscie88a.hw9.generator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cscie88a.hw9.model.SensorEvent;
+import cscie88a.hw9.model.PropertySaleEvent;
 import cscie88a.hw9.util.FileReader;
 import org.apache.commons.lang3.StringUtils;
 
@@ -76,7 +76,7 @@ public class JsonDataSetGenerator {
 
     public void generateData() throws IOException {
         for(int i=0;i<500;i++){
-            SensorEvent event = new SensorEvent();
+            PropertySaleEvent event = new PropertySaleEvent();
 
             event.setEventId(UUID.randomUUID().toString());
             long randomEventTimestampWithinRange = dayBeginningEpoch.toEpochMilli() + ThreadLocalRandom.current().nextLong(0, daysInMillis);

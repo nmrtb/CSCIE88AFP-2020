@@ -2,9 +2,9 @@ package cscie88a.hw9.generator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cscie88a.hw9.kafka.MessageProducer;
-import cscie88a.hw9.model.SensorEvent;
+import cscie88a.hw9.model.PropertySaleEvent;
 import cscie88a.hw9.util.FileReader;
-import cscie88a.hw9.util.SensorEventParser;
+import cscie88a.hw9.util.PropertySaleEventParser;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -87,7 +87,7 @@ public class KafkaDataGenerator {
     public void generateData() throws IOException, InterruptedException {
         do{
             for(int i = 0; i< numberOfEvents; i++){
-                SensorEvent event = new SensorEvent();
+                PropertySaleEvent event = new PropertySaleEvent();
 
                 event.setEventId(UUID.randomUUID().toString());
                 long randomEventTimestampWithinRange = dayBeginningEpoch.toEpochMilli() + ThreadLocalRandom.current().nextLong(0, daysInMillis);
@@ -114,7 +114,7 @@ public class KafkaDataGenerator {
                 event.setWindSpeedInMPH(ThreadLocalRandom.current().nextInt(0,85));
                 event.setTemperatureInCelcius(ThreadLocalRandom.current().nextInt(-20,50));
 
-                kafkaProducer.sendMessage(kafkaTopic, SensorEventParser.getSensorEventAsJsonString(event));
+                kafkaProducer.sendMessage(kafkaTopic, PropertySaleEventParser.getPropertySaleEventAsJsonString(event));
             }
             if(streamingFlag.equalsIgnoreCase("y")){
                 System.out.println("******************Waiting for  "+ streamingIntervalSec +" seconds before it can produce again ******************" );
