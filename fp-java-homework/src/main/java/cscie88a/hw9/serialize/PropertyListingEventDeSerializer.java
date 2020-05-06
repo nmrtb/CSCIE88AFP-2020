@@ -1,13 +1,13 @@
 package cscie88a.hw9.serialize;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cscie88a.hw9.model.PropertySaleEvent;
+import cscie88a.hw9.model.PropertyListingEvent;
 import org.apache.commons.lang3.SerializationException;
 import org.apache.kafka.common.serialization.Deserializer;
 
 import java.util.Map;
 
-public class PropertySaleEventDeSerializer implements Deserializer<PropertySaleEvent> {
+public class PropertyListingEventDeSerializer implements Deserializer<PropertyListingEvent> {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
@@ -16,18 +16,18 @@ public class PropertySaleEventDeSerializer implements Deserializer<PropertySaleE
     }
 
     @Override
-    public PropertySaleEvent deserialize(String topic, byte[] data) {
+    public PropertyListingEvent deserialize(String topic, byte[] data) {
         if (data == null)
             return null;
 
-        PropertySaleEvent propertySaleEvent;
+        PropertyListingEvent propertyListingEvent;
         try {
-            propertySaleEvent = objectMapper.readValue(data, PropertySaleEvent.class);
+            propertyListingEvent = objectMapper.readValue(data, PropertyListingEvent.class);
         } catch (Exception e) {
             throw new SerializationException(e);
         }
 
-        return propertySaleEvent;
+        return propertyListingEvent;
     }
 
     @Override

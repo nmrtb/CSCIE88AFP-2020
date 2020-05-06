@@ -1,8 +1,8 @@
 package cscie88a.hw9.kafka;
 
-import cscie88a.hw9.model.PropertySaleEvent;
-import cscie88a.hw9.serialize.PropertySaleEventDeSerializer;
-import cscie88a.hw9.serialize.PropertySaleEventSerializer;
+import cscie88a.hw9.model.PropertyListingEvent;
+import cscie88a.hw9.serialize.PropertyListingEventDeSerializer;
+import cscie88a.hw9.serialize.PropertyListingEventSerializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
@@ -20,7 +20,7 @@ public class ConsumerStreams {
     String kafkaTopic ;
     String consumerName;
     KafkaStreams processingStream;
-    public static Serde<PropertySaleEvent> SENSOR_EVENT_SERDE = Serdes.serdeFrom(new PropertySaleEventSerializer(), new PropertySaleEventDeSerializer());
+    public static Serde<PropertyListingEvent> SENSOR_EVENT_SERDE = Serdes.serdeFrom(new PropertyListingEventSerializer(), new PropertyListingEventDeSerializer());
 
 
     public static void main(String[] args) {
@@ -43,7 +43,7 @@ public class ConsumerStreams {
         config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         config.put(StreamsConfig.TOPOLOGY_OPTIMIZATION, "all");
         StreamsBuilder builder = new StreamsBuilder();
-        KStream<String, PropertySaleEvent> stream = builder.stream(kafkaTopic, Consumed.with(Serdes.String(), SENSOR_EVENT_SERDE));
+        KStream<String, PropertyListingEvent> stream = builder.stream(kafkaTopic, Consumed.with(Serdes.String(), SENSOR_EVENT_SERDE));
 
         KTable<Windowed<String>, Long> countBySensorType = stream.groupBy((key, value) -> String.format("%s/%s", value.getZipCode(), value.getSensorType()))
                 .windowedBy(TimeWindows.of(Duration.ofMinutes(1)))

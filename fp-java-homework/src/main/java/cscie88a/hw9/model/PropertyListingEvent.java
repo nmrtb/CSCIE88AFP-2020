@@ -2,7 +2,7 @@ package cscie88a.hw9.model;
 
 import java.util.Objects;
 
-public class PropertySaleEvent {
+public class PropertyListingEvent {
     private String eventId;
     private String sensorId;
     private String sensorType;
@@ -99,7 +99,7 @@ public class PropertySaleEvent {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PropertySaleEvent that = (PropertySaleEvent) o;
+        PropertyListingEvent that = (PropertyListingEvent) o;
         return eventId.equals(that.eventId);
     }
 
