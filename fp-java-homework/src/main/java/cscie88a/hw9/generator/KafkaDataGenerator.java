@@ -2,6 +2,7 @@ package cscie88a.hw9.generator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cscie88a.hw9.kafka.MessageProducer;
+import cscie88a.hw9.model.PropertyDetails;
 import cscie88a.hw9.model.PropertyListingEvent;
 import cscie88a.hw9.util.FileReader;
 import cscie88a.hw9.util.PropertyListingEventParser;
@@ -100,6 +101,11 @@ public class KafkaDataGenerator {
                 int displayPrice = r.nextInt(high-low) + low;
 
                 event.setDisplayPrice(Integer.toString(displayPrice));
+
+                PropertyDetails propertyDetails = new PropertyDetails();
+                propertyDetails.setState("NSW");
+                propertyDetails.setBedrooms("2");
+                event.setPropertyDetails(propertyDetails);
 
                 int windDirectionRandomIndex = ThreadLocalRandom.current().nextInt(0, windDirectionList.size());
                 event.setWindDirection(windDirectionArray[windDirectionRandomIndex]);

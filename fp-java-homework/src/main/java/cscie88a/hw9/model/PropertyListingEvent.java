@@ -6,6 +6,7 @@ public class PropertyListingEvent {
     private String eventId;
     private String sensorId;
     private String displayPrice;
+    private PropertyDetails propertyDetails;
     private String windDirection;
     private long eventTimestamp;
 
@@ -29,6 +30,9 @@ public class PropertyListingEvent {
     public void setDisplayPrice(String displayPrice) {
         this.displayPrice = displayPrice;
     }
+
+    public PropertyDetails getPropertyDetails() { return propertyDetails; }
+    public void setPropertyDetails(PropertyDetails propertyDetails) { this.propertyDetails = propertyDetails; }
 
     public String getWindDirection() {
         return windDirection;
