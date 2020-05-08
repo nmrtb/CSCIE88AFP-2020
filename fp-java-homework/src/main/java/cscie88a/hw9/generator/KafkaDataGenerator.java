@@ -34,8 +34,6 @@ public class KafkaDataGenerator {
     Set<String> sensorIdList = FileReader.readAllValuesFile("hw9/input/sensor-id.txt");
     String[] sensorIdArray, windDirectionArray;
 
-    Set<String> sensorTypeList = FileReader.readAllValuesFile("hw9/input/sensor-type.txt");
-
     Set<String> windDirectionList = FileReader.readAllValuesFile("hw9/input/wind-directions.txt");
 
     Instant dayBeginningEpoch = Instant.now().truncatedTo(ChronoUnit.DAYS);
@@ -101,7 +99,7 @@ public class KafkaDataGenerator {
                 int high = 1200000;
                 int displayPrice = r.nextInt(high-low) + low;
 
-                event.setSensorType(Integer.toString(displayPrice));
+                event.setDisplayPrice(Integer.toString(displayPrice));
 
                 int windDirectionRandomIndex = ThreadLocalRandom.current().nextInt(0, windDirectionList.size());
                 event.setWindDirection(windDirectionArray[windDirectionRandomIndex]);

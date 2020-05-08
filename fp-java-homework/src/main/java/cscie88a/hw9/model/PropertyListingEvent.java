@@ -5,7 +5,7 @@ import java.util.Objects;
 public class PropertyListingEvent {
     private String eventId;
     private String sensorId;
-    private String sensorType;
+    private String displayPrice;
     private String windDirection;
     private long eventTimestamp;
 
@@ -23,11 +23,11 @@ public class PropertyListingEvent {
         this.sensorId = sensorId;
     }
 
-    public String getSensorType() {
-        return sensorType;
+    public String getDisplayPrice() {
+        return displayPrice;
     }
-    public void setSensorType(String sensorType) {
-        this.sensorType = sensorType;
+    public void setDisplayPrice(String displayPrice) {
+        this.displayPrice = displayPrice;
     }
 
     public String getWindDirection() {
