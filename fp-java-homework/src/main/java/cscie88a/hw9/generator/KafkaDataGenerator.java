@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,13 +32,11 @@ public class KafkaDataGenerator {
     private String streamingFlag;
     private Integer streamingIntervalSec;
     Set<String> sensorIdList = FileReader.readAllValuesFile("hw9/input/sensor-id.txt");
-    String[] sensorIdArray, sensorTypeArray, windDirectionArray, zipCodeArray;
+    String[] sensorIdArray, windDirectionArray;
 
     Set<String> sensorTypeList = FileReader.readAllValuesFile("hw9/input/sensor-type.txt");
 
     Set<String> windDirectionList = FileReader.readAllValuesFile("hw9/input/wind-directions.txt");
-
-    Set<String> zipCodeList = FileReader.readAllValuesFile("hw9/input/zipcode.txt");
 
     Instant dayBeginningEpoch = Instant.now().truncatedTo(ChronoUnit.DAYS);
     MessageProducer kafkaProducer = null ;
@@ -47,9 +46,8 @@ public class KafkaDataGenerator {
 
     public KafkaDataGenerator() {
         sensorIdArray =  sensorIdList.stream().toArray(String[]::new);
-        sensorTypeArray =  sensorTypeList.stream().toArray(String[]::new);
-        zipCodeArray =  zipCodeList.stream().toArray(String[]::new);
         windDirectionArray =  windDirectionList.stream().toArray(String[]::new);
+
         String startDateAsEpochString = System.getProperty("start_date_epoch_millis",null);
         String endDaysFromStartString = System.getProperty("end_no_days_from_start", DEFAULT_DAYS);
         validateStartParameters(startDateAsEpochString, endDaysFromStartString);
@@ -89,30 +87,24 @@ public class KafkaDataGenerator {
             for(int i = 0; i< numberOfEvents; i++){
                 PropertyListingEvent event = new PropertyListingEvent();
 
-                event.setEventId(UUID.randomUUID().toString());
+                event.setEventId(Integer.toString(i)); // sequential eventID's
+
                 long randomEventTimestampWithinRange = dayBeginningEpoch.toEpochMilli() + ThreadLocalRandom.current().nextLong(0, daysInMillis);
                 event.setEventTimestamp(randomEventTimestampWithinRange);
 
-                int sensorIdRandomIndex = ThreadLocalRandom.current().nextInt(0, sensorIdList.size());
-                event.setSensorId(sensorIdArray[sensorIdRandomIndex]);
+                int listingIdRandomIndex = ThreadLocalRandom.current().nextInt(0, sensorIdList.size());
+                event.setSensorId(sensorIdArray[listingIdRandomIndex]);
 
-                int sensorTypeRandomIndex = ThreadLocalRandom.current().nextInt(0, sensorTypeList.size());
-                event.setSensorType(sensorTypeArray[sensorTypeRandomIndex]);
+                // https://stackoverflow.com/questions/5271598/java-generate-random-number-between-two-given-values
+                Random r = new Random();
+                int low = 700000;
+                int high = 1200000;
+                int displayPrice = r.nextInt(high-low) + low;
+
+                event.setSensorType(Integer.toString(displayPrice));
 
                 int windDirectionRandomIndex = ThreadLocalRandom.current().nextInt(0, windDirectionList.size());
                 event.setWindDirection(windDirectionArray[windDirectionRandomIndex]);
-
-                int zipCodeRandomIndex = ThreadLocalRandom.current().nextInt(0, zipCodeList.size());
-                String zipCode = zipCodeArray[zipCodeRandomIndex];
-                zipCode = StringUtils.stripStart(zipCode, "\"");
-                zipCode = StringUtils.stripEnd(zipCode, "\"");
-                event.setZipCode(zipCode);
-
-                Double humidity = ThreadLocalRandom.current().nextDouble(50.0, 90.0);
-                event.setHumidityPercentage(humidity.floatValue());
-
-                event.setWindSpeedInMPH(ThreadLocalRandom.current().nextInt(0,85));
-                event.setTemperatureInCelcius(ThreadLocalRandom.current().nextInt(-20,50));
 
                 kafkaProducer.sendMessage(kafkaTopic, PropertyListingEventParser.getPropertyListingEventAsJsonString(event));
             }
