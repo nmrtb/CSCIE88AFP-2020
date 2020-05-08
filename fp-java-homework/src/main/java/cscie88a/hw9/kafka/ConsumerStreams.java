@@ -45,12 +45,10 @@ public class ConsumerStreams {
         StreamsBuilder builder = new StreamsBuilder();
         KStream<String, PropertyListingEvent> stream = builder.stream(kafkaTopic, Consumed.with(Serdes.String(), SENSOR_EVENT_SERDE));
 
-        KTable<Windowed<String>, Long> countBySensorType = stream.groupBy((key, value) -> String.format("%s/%s", value.getZipCode(), value.getSensorType()))
-                .windowedBy(TimeWindows.of(Duration.ofMinutes(1)))
+        KTable<String, Long> countBySensorType = stream.groupBy((key, value) -> value.getSensorType())
                 .count();
 
         countBySensorType.toStream()
-                .map((key, value) -> KeyValue.pair(key.key(), value))
                 .mapValues((key,values) -> key +" : "+  values.toString())
                 .to(sensor_type_count_topic, Produced.with(Serdes.String(), Serdes.String()));
 
