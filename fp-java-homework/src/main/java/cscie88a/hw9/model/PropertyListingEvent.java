@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class PropertyListingEvent {
     private String eventId;
-    private String sensorId;
     private PriceDetails priceDetails;
     private PropertyDetails propertyDetails;
     private String windDirection;
@@ -15,13 +14,6 @@ public class PropertyListingEvent {
     }
     public void setEventId(String eventId) {
         this.eventId = eventId;
-    }
-
-    public String getSensorId() {
-        return sensorId;
-    }
-    public void setSensorId(String sensorId) {
-        this.sensorId = sensorId;
     }
 
     public PriceDetails getPriceDetails() {

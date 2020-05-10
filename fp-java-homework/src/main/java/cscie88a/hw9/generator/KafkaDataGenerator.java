@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Randomly picks sample data from input directory and generates sensor events in json format
+ * Randomly picks sample data from input directory and generates events in json format
  * to output directory
  */
 public class KafkaDataGenerator {
@@ -33,8 +33,7 @@ public class KafkaDataGenerator {
     private String kafkaUrl ;
     private String streamingFlag;
     private Integer streamingIntervalSec;
-    Set<String> sensorIdList = FileReader.readAllValuesFile("hw9/input/sensor-id.txt");
-    String[] sensorIdArray, windDirectionArray;
+    String[] windDirectionArray;
 
     Set<String> windDirectionList = FileReader.readAllValuesFile("hw9/input/wind-directions.txt");
 
@@ -45,7 +44,6 @@ public class KafkaDataGenerator {
     private int numberOfEvents;
 
     public KafkaDataGenerator() {
-        sensorIdArray =  sensorIdList.stream().toArray(String[]::new);
         windDirectionArray =  windDirectionList.stream().toArray(String[]::new);
 
         String startDateAsEpochString = System.getProperty("start_date_epoch_millis",null);
@@ -92,9 +90,6 @@ public class KafkaDataGenerator {
                 long randomEventTimestampWithinRange = dayBeginningEpoch.toEpochMilli() + ThreadLocalRandom.current().nextLong(0, daysInMillis);
                 event.setEventTimestamp(randomEventTimestampWithinRange);
 
-                int listingIdRandomIndex = ThreadLocalRandom.current().nextInt(0, sensorIdList.size());
-                event.setSensorId(sensorIdArray[listingIdRandomIndex]);
-
                 // https://stackoverflow.com/questions/5271598/java-generate-random-number-between-two-given-values
                 Random r = new Random();
                 int low = 700000;
@@ -121,8 +116,7 @@ public class KafkaDataGenerator {
                 System.out.println("******************Generating events ******************" );
             }
 
-        }while (streamingFlag.equalsIgnoreCase("y"));
-
+        } while (streamingFlag.equalsIgnoreCase("y"));
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
