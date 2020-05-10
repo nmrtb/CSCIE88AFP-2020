@@ -87,7 +87,7 @@ public class KafkaDataGenerator {
             for(int i = 0; i< numberOfEvents; i++){
                 PropertyListingEvent event = new PropertyListingEvent();
 
-                event.setEventId(Integer.toString(i)); // sequential eventID's
+                event.setEventId(UUID.randomUUID().toString());
 
                 long randomEventTimestampWithinRange = dayBeginningEpoch.toEpochMilli() + ThreadLocalRandom.current().nextLong(0, daysInMillis);
                 event.setEventTimestamp(randomEventTimestampWithinRange);

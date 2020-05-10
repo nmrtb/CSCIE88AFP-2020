@@ -54,7 +54,7 @@ services:
     volumes:
       - "../:/data-generator"
     working_dir: /usr/local/hw9
-    command: './gradlew runMessageProducer -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic -Dno_of_events=100 -Dstreaming=y -Dstreaming_interval_sec=20 --no-daemon'
+    command: './gradlew runMessageProducer -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic -Dno_of_events=3 -Dstreaming=y -Dstreaming_interval_sec=20 --no-daemon'
     depends_on:
       - zookeeper
       - kafka
