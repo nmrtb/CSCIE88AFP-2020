@@ -5,7 +5,7 @@ import java.util.Objects;
 public class PropertyListingEvent {
     private String eventId;
     private String sensorId;
-    private String displayPrice;
+    private PriceDetails priceDetails;
     private PropertyDetails propertyDetails;
     private String windDirection;
     private long eventTimestamp;
@@ -24,11 +24,11 @@ public class PropertyListingEvent {
         this.sensorId = sensorId;
     }
 
-    public String getDisplayPrice() {
-        return displayPrice;
+    public PriceDetails getPriceDetails() {
+        return priceDetails;
     }
-    public void setDisplayPrice(String displayPrice) {
-        this.displayPrice = displayPrice;
+    public void setPriceDetails(PriceDetails priceDetails) {
+        this.priceDetails = priceDetails;
     }
 
     public PropertyDetails getPropertyDetails() { return propertyDetails; }

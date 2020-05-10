@@ -45,7 +45,7 @@ public class ConsumerStreams {
         StreamsBuilder builder = new StreamsBuilder();
         KStream<String, PropertyListingEvent> stream = builder.stream(kafkaTopic, Consumed.with(Serdes.String(), SENSOR_EVENT_SERDE));
 
-        KTable<String, Long> countBySensorType = stream.groupBy((key, value) -> value.getDisplayPrice())
+        KTable<String, Long> countBySensorType = stream.groupBy((key, value) -> value.getPriceDetails().getDisplayPrice())
                 .count();
 
         countBySensorType.toStream()
