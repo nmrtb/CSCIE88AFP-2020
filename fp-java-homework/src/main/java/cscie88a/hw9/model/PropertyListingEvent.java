@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class PropertyListingEvent {
     private String eventId;
+    private String listingId;
     private PriceDetails priceDetails;
     private PropertyDetails propertyDetails;
     private String windDirection;
@@ -15,6 +16,9 @@ public class PropertyListingEvent {
     public void setEventId(String eventId) {
         this.eventId = eventId;
     }
+
+    public String getListingId() { return listingId; }
+    public void setListingId(String listingId) { this.listingId = listingId; }
 
     public PriceDetails getPriceDetails() {
         return priceDetails;

@@ -87,6 +87,10 @@ public class KafkaDataGenerator {
 
                 event.setEventId(UUID.randomUUID().toString());
 
+//                https://stackoverflow.com/questions/5328822/generating-10-digits-unique-random-number-in-java
+                long number = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+                event.setListingId(Long.toString(number));
+
                 long randomEventTimestampWithinRange = dayBeginningEpoch.toEpochMilli() + ThreadLocalRandom.current().nextLong(0, daysInMillis);
                 event.setEventTimestamp(randomEventTimestampWithinRange);
 
