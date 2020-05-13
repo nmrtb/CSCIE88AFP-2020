@@ -46,6 +46,8 @@ dependencies {
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: logback_version
     implementation group: 'ch.qos.logback', name: 'logback-core', version: logback_version
 
+    implementation 'com.google.code.gson:gson:2.8.6'
+
 //    // Use JUnit test framework
 //    testImplementation 'junit:junit:4.12'
 
