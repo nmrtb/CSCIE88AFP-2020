@@ -55,10 +55,10 @@ public class ConsumerStreams {
 
         KStream<String, PropertyListingEvent> stream = builder.stream(kafkaTopic, Consumed.with(Serdes.String(), PROPERTY_LISTING_SERDE));
 
-        KTable<String, Long> countBySensorType = stream.groupBy((key, value) -> value.getType())
+        KTable<String, Long> countByType = stream.groupBy((key, value) -> value.getType())
                 .count();
 
-        countBySensorType.toStream()
+        countByType.toStream()
                 .mapValues((key,values) -> key +" : "+  values.toString())
                 .to(listing_type_count_topic, Produced.with(Serdes.String(), Serdes.String()));
         processingStream = new KafkaStreams(builder.build(), config);

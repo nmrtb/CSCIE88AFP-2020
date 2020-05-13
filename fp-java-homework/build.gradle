@@ -85,7 +85,7 @@ task runConsumerStreamAvg(type: JavaExec) {
     group = "Execution"
     description = "Runs kafka streams"
     classpath = sourceSets.main.runtimeClasspath
-    main = "cscie88a.hw9.kafka.ConsumerStreamsAvg"
+    main = "cscie88a.project.kafka.ConsumerStreamsAvg"
 }
 
 
