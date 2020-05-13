@@ -71,14 +71,14 @@ services:
       - zookeeper
       - kafka
 
-#  java-message-consumer-avg:
-#    image: data-generator-build-image
-#    networks:
-#      - kafka-demo
-#    volumes:
-#      - "../:/data-generator"
-#    working_dir: /usr/local/final
-#    command: './gradlew runConsumerStreamAvg -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic --no-daemon'
-#    depends_on:
-#      - zookeeper
-#      - kafka
+  java-message-consumer-avg:
+    image: data-generator-build-image
+    networks:
+      - kafka-demo
+    volumes:
+      - "../:/data-generator"
+    working_dir: /usr/local/final
+    command: './gradlew runConsumerStreamAvg -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic --no-daemon'
+    depends_on:
+      - zookeeper
+      - kafka

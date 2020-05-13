@@ -68,9 +68,11 @@ public class ConsumerStreamsAvg {
                                 .withKeySerde(Serdes.String())
                                 .withValueSerde(AGGREGATOR_SERDE))
                 .toStream((k,v) -> v.displayPrice)
-                .mapValues((propertyListingAggregator) -> propertyListingAggregator.computeAvgPrice());
+                .mapValues((aggregator) -> aggregator.computeAvgPrice());
 
-        averagedStream.to(avg_sale_topic);
+        averagedStream
+                .mapValues((aggregator) -> "avg: " + String.valueOf(aggregator.avg))
+                .to(avg_sale_topic);
 
         KStream<String, PropertyListingAggregator> printStream = averagedStream.peek(
             new ForeachAction<String, PropertyListingAggregator>() {
