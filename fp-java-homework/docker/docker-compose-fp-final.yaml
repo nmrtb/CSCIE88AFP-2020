@@ -45,7 +45,7 @@ services:
     image: data-generator-build-image
     build:
       context: ..
-      dockerfile: Dockerfile-hw9
+      dockerfile: Dockerfile-final
 
   java-message-producer:
     image: data-generator-build-image
@@ -53,7 +53,7 @@ services:
       - kafka-demo
     volumes:
       - "../:/data-generator"
-    working_dir: /usr/local/hw9
+    working_dir: /usr/local/final
     command: './gradlew runMessageProducer -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic -Dno_of_events=3 -Dstreaming=y -Dstreaming_interval_sec=20 --no-daemon'
     depends_on:
       - zookeeper
@@ -65,20 +65,20 @@ services:
       - kafka-demo
     volumes:
       - "../:/data-generator"
-    working_dir: /usr/local/hw9
-    command: './gradlew runConsumerStreamAvg -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic --no-daemon'
+    working_dir: /usr/local/final
+    command: './gradlew runConsumerStream -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic --no-daemon'
     depends_on:
       - zookeeper
       - kafka
 
-  java-message-consumer-avg:
-    image: data-generator-build-image
-    networks:
-      - kafka-demo
-    volumes:
-      - "../:/data-generator"
-    working_dir: /usr/local/hw9
-    command: './gradlew runConsumerStreamAvg -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic --no-daemon'
-    depends_on:
-      - zookeeper
-      - kafka
+#  java-message-consumer-avg:
+#    image: data-generator-build-image
+#    networks:
+#      - kafka-demo
+#    volumes:
+#      - "../:/data-generator"
+#    working_dir: /usr/local/final
+#    command: './gradlew runConsumerStreamAvg -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic --no-daemon'
+#    depends_on:
+#      - zookeeper
+#      - kafka
