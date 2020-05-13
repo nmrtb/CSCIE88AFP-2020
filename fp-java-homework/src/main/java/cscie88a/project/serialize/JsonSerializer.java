@@ -1,4 +1,4 @@
-package cscie88a.hw9.serialize;
+package cscie88a.project.serialize;
 
 import com.google.gson.Gson;
 import org.apache.kafka.common.serialization.Serializer;

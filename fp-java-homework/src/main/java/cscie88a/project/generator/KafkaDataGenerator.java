@@ -1,12 +1,12 @@
-package cscie88a.hw9.generator;
+package cscie88a.project.generator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cscie88a.hw9.kafka.MessageProducer;
-import cscie88a.hw9.model.PriceDetails;
-import cscie88a.hw9.model.PropertyDetails;
-import cscie88a.hw9.model.PropertyListingEvent;
-import cscie88a.hw9.util.FileReader;
-import cscie88a.hw9.util.PropertyListingEventParser;
+import cscie88a.project.kafka.MessageProducer;
+import cscie88a.project.model.PriceDetails;
+import cscie88a.project.model.PropertyDetails;
+import cscie88a.project.model.PropertyListingEvent;
+import cscie88a.project.util.FileReader;
+import cscie88a.project.util.PropertyListingEventParser;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -33,7 +33,7 @@ public class KafkaDataGenerator {
     private Integer streamingIntervalSec;
     String[] typeArray;
 
-    Set<String> typeList = FileReader.readAllValuesFile("hw9/input/listing-type.txt");
+    Set<String> typeList = FileReader.readAllValuesFile("Final-Project/listing-type.txt");
 
     Instant dayBeginningEpoch = Instant.now().truncatedTo(ChronoUnit.DAYS);
     MessageProducer kafkaProducer = null ;

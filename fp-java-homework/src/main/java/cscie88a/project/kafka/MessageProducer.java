@@ -1,4 +1,4 @@
-package cscie88a.hw9.kafka;
+package cscie88a.project.kafka;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;

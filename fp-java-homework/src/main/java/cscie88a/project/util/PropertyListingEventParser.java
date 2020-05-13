@@ -1,8 +1,8 @@
-package cscie88a.hw9.util;
+package cscie88a.project.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cscie88a.hw9.model.PropertyListingEvent;
+import cscie88a.project.model.PropertyListingEvent;
 
 public class PropertyListingEventParser {
     private static ObjectMapper OBJECT_MAPPER = new ObjectMapper();

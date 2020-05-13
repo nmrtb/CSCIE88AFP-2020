@@ -1,7 +1,7 @@
-package cscie88a.hw9.serialize;
+package cscie88a.project.serialize;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cscie88a.hw9.model.PropertyListingEvent;
+import cscie88a.project.model.PropertyListingEvent;
 import org.apache.commons.lang3.SerializationException;
 import org.apache.kafka.common.serialization.Deserializer;
 

@@ -1,4 +1,4 @@
-package cscie88a.hw9.model;
+package cscie88a.project.model;
 
 import java.util.Objects;
 
