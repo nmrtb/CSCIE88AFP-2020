@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class PropertyListingEvent {
     private String eventId;
+    private String type;
     private String listingId;
     private PriceDetails priceDetails;
     private PropertyDetails propertyDetails;
-    private String windDirection;
     private long eventTimestamp;
 
     public String getEventId() {
@@ -30,11 +30,11 @@ public class PropertyListingEvent {
     public PropertyDetails getPropertyDetails() { return propertyDetails; }
     public void setPropertyDetails(PropertyDetails propertyDetails) { this.propertyDetails = propertyDetails; }
 
-    public String getWindDirection() {
-        return windDirection;
+    public String getType() {
+        return type;
     }
-    public void setWindDirection(String windDirection) {
-        this.windDirection = windDirection;
+    public void setType(String windDirection) {
+        this.type = windDirection;
     }
 
     public long getEventTimestamp() {

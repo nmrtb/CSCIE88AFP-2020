@@ -8,8 +8,6 @@ import cscie88a.hw9.model.PropertyListingEvent;
 import cscie88a.hw9.util.FileReader;
 import cscie88a.hw9.util.PropertyListingEventParser;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.IOException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -33,9 +31,9 @@ public class KafkaDataGenerator {
     private String kafkaUrl ;
     private String streamingFlag;
     private Integer streamingIntervalSec;
-    String[] windDirectionArray;
+    String[] typeArray;
 
-    Set<String> windDirectionList = FileReader.readAllValuesFile("hw9/input/wind-directions.txt");
+    Set<String> typeList = FileReader.readAllValuesFile("hw9/input/listing-type.txt");
 
     Instant dayBeginningEpoch = Instant.now().truncatedTo(ChronoUnit.DAYS);
     MessageProducer kafkaProducer = null ;
@@ -44,7 +42,7 @@ public class KafkaDataGenerator {
     private int numberOfEvents;
 
     public KafkaDataGenerator() {
-        windDirectionArray =  windDirectionList.stream().toArray(String[]::new);
+        typeArray =  typeList.stream().toArray(String[]::new);
 
         String startDateAsEpochString = System.getProperty("start_date_epoch_millis",null);
         String endDaysFromStartString = System.getProperty("end_no_days_from_start", DEFAULT_DAYS);
@@ -109,8 +107,8 @@ public class KafkaDataGenerator {
                 propertyDetails.setBedrooms("2");
                 event.setPropertyDetails(propertyDetails);
 
-                int windDirectionRandomIndex = ThreadLocalRandom.current().nextInt(0, windDirectionList.size());
-                event.setWindDirection(windDirectionArray[windDirectionRandomIndex]);
+                int typeRandomIndex = ThreadLocalRandom.current().nextInt(0, typeList.size());
+                event.setType(typeArray[typeRandomIndex]);
 
                 kafkaProducer.sendMessage(kafkaTopic, PropertyListingEventParser.getPropertyListingEventAsJsonString(event));
             }
