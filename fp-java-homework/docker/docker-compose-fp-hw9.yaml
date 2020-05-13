@@ -21,7 +21,7 @@ services:
       # HOSTNAME_COMMAND: "ip route get 1.2.3.4 | awk '{print $$7}'"
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: "input_topic:10:1,sensor_type_count_topic:10:1,sensor_type_hourly_count_topic:10:1"
+      KAFKA_CREATE_TOPICS: "input_topic:10:1,listing_type_count_topic:10:1,avg_sale_topic:10:1"
     depends_on:
       - zookeeper
     ports:
@@ -66,7 +66,19 @@ services:
     volumes:
       - "../:/data-generator"
     working_dir: /usr/local/hw9
-    command: './gradlew runConsumerStream -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic --no-daemon'
+    command: './gradlew runConsumerStreamAvg -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic --no-daemon'
+    depends_on:
+      - zookeeper
+      - kafka
+
+  java-message-consumer-avg:
+    image: data-generator-build-image
+    networks:
+      - kafka-demo
+    volumes:
+      - "../:/data-generator"
+    working_dir: /usr/local/hw9
+    command: './gradlew runConsumerStreamAvg -Dkafka_url=kafka:9092 -Dkafka_topic=input_topic --no-daemon'
     depends_on:
       - zookeeper
       - kafka

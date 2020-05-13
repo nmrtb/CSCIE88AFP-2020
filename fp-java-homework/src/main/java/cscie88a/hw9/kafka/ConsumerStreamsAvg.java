@@ -6,14 +6,15 @@ import cscie88a.hw9.serialize.*;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
-import org.apache.kafka.streams.kstream.Consumed;
-import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.KTable;
-import org.apache.kafka.streams.kstream.Produced;
+import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.kstream.TimeWindows;
+import org.apache.kafka.streams.state.KeyValueStore;
 
+import java.time.Duration;
 import java.util.Properties;
 
 
@@ -25,10 +26,10 @@ public class ConsumerStreamsAvg {
     KafkaStreams processingStream;
 
     public static Serde<PropertyListingEvent> PROPERTY_LISTING_SERDE = Serdes.serdeFrom(new PropertyListingEventSerializer(), new PropertyListingEventDeSerializer());
-
+    public static Serde<PropertyListingAggregator> AGGREGATOR_SERDE = Serdes.serdeFrom(new JsonSerializer<>(), new JsonDeserializer<>());
     static public final class AverageReadingSerde extends WrapperSerde<PropertyListingAggregator> {
         public AverageReadingSerde() {
-            super(new JsonSerializer<>(), new JsonDeserializer<>(PropertyListingAggregator.class));
+            super(new JsonSerializer<PropertyListingAggregator>(), new JsonDeserializer<PropertyListingAggregator>(PropertyListingAggregator.class));
         }
     }
 
@@ -42,7 +43,7 @@ public class ConsumerStreamsAvg {
         kafkaTopic = System.getProperty("kafka_topic", "test_topic");
         kafkaUrl = System.getProperty("kafka_url", "localhost:9092");
         consumerName = System.getProperty("kafka_consumer_id", "test-consumer-new3");
-        String sensor_type_count_topic = System.getProperty("sensor_type_count_topic", "sensor_type_count_topic");
+        String avg_sale_topic = System.getProperty("avg_sale_topic", "avg_sale_topic");
 //        String sensor_type_hourly_count_topic = System.getProperty("sensor_type_hourly_count_topic", "sensor_type_hourly_count_topic");
         Properties config = new Properties();
         config.put(StreamsConfig.APPLICATION_ID_CONFIG, consumerName);
@@ -52,41 +53,34 @@ public class ConsumerStreamsAvg {
         config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         config.put(StreamsConfig.TOPOLOGY_OPTIMIZATION, "all");
 
-//        StreamsBuilder builder = new StreamsBuilder();
+        StreamsBuilder builder = new StreamsBuilder();
 
+        KStream<String, PropertyListingEvent> stream = builder.stream(kafkaTopic, Consumed.with(Serdes.String(), PROPERTY_LISTING_SERDE));
 
-        final StreamsBuilder builder = new StreamsBuilder();
+        KGroupedStream<String, PropertyListingEvent> groupedSalesReading =
+            stream
+                .filter((k, v) -> v.getType() == "Sale")
+                .groupByKey();
 
-        KStream<String, PropertyListingEvent> source = builder.stream(kafkaTopic, Consumed.with(Serdes.String(), PROPERTY_LISTING_SERDE));
+        KStream<String, PropertyListingAggregator> averagedStream = groupedSalesReading
+                .aggregate(
+                        () -> new PropertyListingAggregator(),
+                        (aggKey, newValue, aggValue) -> aggValue.add(newValue),
+                        Materialized.<String,PropertyListingAggregator, KeyValueStore<Bytes, byte[]>>as("temp-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(AGGREGATOR_SERDE))
+                .toStream((k,v) -> v.displayPrice)
+                .mapValues((propertyListingAggregator) -> propertyListingAggregator.computeAvgPrice());
 
-//        KGroupedStream<String, PropertyListingEvent> groupedSensorReading = source.groupByKey();
-//
-//        KTable<String, PropertyListingAggregator> table = groupedSensorReading.aggregate(
-//                () -> new PropertyListingAggregator(),
-//                (aggKey, newValue, aggValue) -> aggValue.add(newValue),
-//                Materialized.as("temp-store"));
-//
-//
-//        table
-//            .toStream((k, v) -> v.displayPrice)
-//            .mapValues((reading) -> reading.computeAvgPrice())
-//            .to(sensor_type_count_topic);
-//
-//        KStream<String, PropertyListingAggregator> printStream = table
-//                .toStream((k, v) -> v.displayPrice)
-//                .peek(
-//                new ForeachAction<String, PropertyListingAggregator>() {
-//                    @Override
-//                    public void apply(String key, PropertyListingAggregator value) {
-//                        System.out.println("Key=" + key + ", Average=" + value.avg);
-//                    }
-//        });
-        KTable<String, Long> countBySensorType = source.groupBy((key, value) -> value.getListingId())
-                .count();
+        averagedStream.to(avg_sale_topic);
 
-        countBySensorType.toStream()
-                .mapValues((key,values) -> key +" : "+  values.toString())
-                .to(sensor_type_count_topic, Produced.with(Serdes.String(), Serdes.String()));
+        KStream<String, PropertyListingAggregator> printStream = averagedStream.peek(
+            new ForeachAction<String, PropertyListingAggregator>() {
+                @Override
+                public void apply(String key, PropertyListingAggregator value) {
+                    System.out.println("Key=" + key + ", Average=" + value.avg);
+                }
+            });
 
         processingStream = new KafkaStreams(builder.build(), config);
         Runtime.getRuntime().addShutdownHook(new Thread(processingStream::close));
@@ -129,4 +123,4 @@ public class ConsumerStreamsAvg {
 //
 //        average.toStream()
 //                .mapValues((key,values) -> values.toString())
-//                .to(sensor_type_count_topic, Produced.with(Serdes.String(), Serdes.String()));
+//                .to(avg_sale_topic, Produced.with(Serdes.String(), Serdes.String()));
