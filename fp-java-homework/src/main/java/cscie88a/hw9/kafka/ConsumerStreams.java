@@ -43,7 +43,7 @@ public class ConsumerStreams {
         kafkaTopic = System.getProperty("kafka_topic", "test_topic");
         kafkaUrl = System.getProperty("kafka_url", "localhost:9092");
         consumerName = System.getProperty("kafka_consumer_id", "test-consumer-new3");
-        String sensor_type_count_topic = System.getProperty("sensor_type_count_topic", "sensor_type_count_topic");
+        String listing_type_count_topic = System.getProperty("listing_type_count_topic", "listing_type_count_topic");
 //        String sensor_type_hourly_count_topic = System.getProperty("sensor_type_hourly_count_topic", "sensor_type_hourly_count_topic");
         Properties config = new Properties();
         config.put(StreamsConfig.APPLICATION_ID_CONFIG, consumerName);
@@ -62,7 +62,7 @@ public class ConsumerStreams {
 
         countBySensorType.toStream()
                 .mapValues((key,values) -> key +" : "+  values.toString())
-                .to(sensor_type_count_topic, Produced.with(Serdes.String(), Serdes.String()));
+                .to(listing_type_count_topic, Produced.with(Serdes.String(), Serdes.String()));
         processingStream = new KafkaStreams(builder.build(), config);
         Runtime.getRuntime().addShutdownHook(new Thread(processingStream::close));
     }
